@@ -13,6 +13,7 @@
 		D429591D2B14AE4B0015092E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D429591B2B14AE4B0015092E /* Main.storyboard */; };
 		D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D429591E2B14AE4D0015092E /* Assets.xcassets */; };
 		D42959222B14AE4D0015092E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42959202B14AE4D0015092E /* LaunchScreen.storyboard */; };
+		D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42959292B14DA6F0015092E /* Splash screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D429591E2B14AE4D0015092E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D42959212B14AE4D0015092E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D42959232B14AE4D0015092E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D42959292B14DA6F0015092E /* Splash screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Splash screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				D42959172B14AE4B0015092E /* SceneDelegate.swift */,
 				D42959192B14AE4B0015092E /* ViewController.swift */,
 				D429591B2B14AE4B0015092E /* Main.storyboard */,
+				D42959292B14DA6F0015092E /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
 				D42959202B14AE4D0015092E /* LaunchScreen.storyboard */,
 				D42959232B14AE4D0015092E /* Info.plist */,
@@ -127,6 +130,7 @@
 			files = (
 				D42959222B14AE4D0015092E /* LaunchScreen.storyboard in Resources */,
 				D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */,
+				D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */,
 				D429591D2B14AE4B0015092E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
