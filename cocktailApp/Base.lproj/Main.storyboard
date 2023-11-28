@@ -28,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="-1437" y="-11"/>
         </scene>
-        <!--Cocktails-->
+        <!--Navigation Controller-->
         <scene sceneID="TVs-Rr-hNm">
             <objects>
                 <navigationController id="wq5-TG-byi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cocktails" image="wineglass" catalog="system" id="bnI-uN-cVk"/>
+                    <tabBarItem key="tabBarItem" title="" id="bnI-uN-cVk"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VzP-y7-sej">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -93,11 +93,11 @@
             </objects>
             <point key="canvasLocation" x="-1437" y="1456"/>
         </scene>
-        <!--Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="TSl-EL-lDs">
             <objects>
                 <navigationController id="Jft-cJ-Ocz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" id="Kas-wR-tXV"/>
+                    <tabBarItem key="tabBarItem" title="" id="Kas-wR-tXV"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uub-7h-2yu">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -110,11 +110,11 @@
             </objects>
             <point key="canvasLocation" x="-734" y="722"/>
         </scene>
-        <!--Favorites-->
+        <!--Navigation Controller-->
         <scene sceneID="qPY-2Y-mvB">
             <objects>
                 <navigationController id="swh-HN-q24" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" catalog="system" id="nCC-rf-KX7"/>
+                    <tabBarItem key="tabBarItem" title="" id="nCC-rf-KX7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ESw-NZ-XPk">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -166,9 +166,6 @@
     </scenes>
     <resources>
         <image name="SplashScr" width="340" height="340"/>
-        <image name="heart" catalog="system" width="128" height="107"/>
-        <image name="person" catalog="system" width="128" height="121"/>
-        <image name="wineglass" catalog="system" width="95" height="128"/>
         <image name="wineglass.fill" catalog="system" width="95" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
