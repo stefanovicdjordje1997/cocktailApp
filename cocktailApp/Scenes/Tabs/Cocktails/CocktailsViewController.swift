@@ -20,6 +20,7 @@ class CocktailsViewController: UIViewController {
     var filterButton = UIButton(type: .custom)
     var searchBarButtonItem = UIBarButtonItem()
     var filterBarButtonItem = UIBarButtonItem()
+    var drinks: [Drink] = []
     
     // MARK: - Lifecycle
     
@@ -28,6 +29,12 @@ class CocktailsViewController: UIViewController {
         
         setupValues()
         setupCollectionView()
+        ApiManager.fetchDrinks() { apiDrinks in
+            self.drinks = apiDrinks
+            DispatchQueue.main.async {
+                self.cocktailsCollectionView.reloadData()
+            }
+        }
         
     }
     
@@ -111,7 +118,7 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return drinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
