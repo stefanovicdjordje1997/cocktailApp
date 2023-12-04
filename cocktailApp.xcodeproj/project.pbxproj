@@ -56,7 +56,6 @@
 		D42959092B14AE4B0015092E = {
 			isa = PBXGroup;
 			children = (
-				D4B2DF3A2B1DE4F1004D4206 /* Networking */,
 				D42959142B14AE4B0015092E /* cocktailApp */,
 				D42959132B14AE4B0015092E /* Products */,
 			);
@@ -77,6 +76,7 @@
 				D42959172B14AE4B0015092E /* SceneDelegate.swift */,
 				D4B2DF372B1DE437004D4206 /* Scenes */,
 				D4B2DF362B1DE3E8004D4206 /* Models */,
+				D4B2DF3A2B1DE4F1004D4206 /* Networking */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
 				D42959292B14DA6F0015092E /* Splash screen.storyboard */,

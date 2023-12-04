@@ -29,13 +29,7 @@ class CocktailsViewController: UIViewController {
         
         setupValues()
         setupCollectionView()
-        ApiManager.fetchDrinks() { apiDrinks in
-            self.drinks = apiDrinks
-            DispatchQueue.main.async {
-                self.cocktailsCollectionView.reloadData()
-            }
-        }
-        
+        fetchingDrinkData()
     }
     
     // MARK: - Set up
@@ -97,6 +91,14 @@ class CocktailsViewController: UIViewController {
         return gradientLayer
     }
     
+    func fetchingDrinkData() {
+        ApiManager.fetchDrinks() { apiDrinks in
+            self.drinks = apiDrinks
+            DispatchQueue.main.async {
+                self.cocktailsCollectionView.reloadData()
+            }
+        }
+    }
     
 }
 
@@ -123,7 +125,7 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
-        cell.setupCell()
+        cell.setupCell(with: drinks[indexPath.row])
         return cell
     }
     

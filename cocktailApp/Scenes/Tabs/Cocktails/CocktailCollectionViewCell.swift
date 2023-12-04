@@ -21,8 +21,8 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setupCell() {
-        drinkNameLabel.text = "Cocktail"
+    func setupCell(with drink: Drink) {
+        drinkNameLabel.text = drink.strDrink
         addToFavoritesButton.setImage(UIImage(named: "favoritesOff"), for: .normal)
         layer.cornerRadius = 4
         layer.shadowRadius = 2
