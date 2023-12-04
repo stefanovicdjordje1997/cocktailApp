@@ -9,25 +9,33 @@
 /* Begin PBXBuildFile section */
 		D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959152B14AE4B0015092E /* AppDelegate.swift */; };
 		D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959172B14AE4B0015092E /* SceneDelegate.swift */; };
-		D429591A2B14AE4B0015092E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959192B14AE4B0015092E /* ViewController.swift */; };
+		D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959192B14AE4B0015092E /* SplashViewController.swift */; };
 		D429591D2B14AE4B0015092E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D429591B2B14AE4B0015092E /* Main.storyboard */; };
 		D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D429591E2B14AE4D0015092E /* Assets.xcassets */; };
 		D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D42959292B14DA6F0015092E /* Splash screen.storyboard */; };
+		D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */; };
+		D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */; };
+		D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */; };
 		D4563E362B162D06004855B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4563E352B162D06004855B6 /* TabBarController.swift */; };
 		D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465D88F2B1756FB0015633E /* ProfileViewController.swift */; };
+		D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D42959122B14AE4B0015092E /* cocktailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocktailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42959152B14AE4B0015092E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D42959172B14AE4B0015092E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D42959192B14AE4B0015092E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D42959192B14AE4B0015092E /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D429591C2B14AE4B0015092E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D429591E2B14AE4D0015092E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D42959232B14AE4D0015092E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D42959292B14DA6F0015092E /* Splash screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Splash screen.storyboard"; sourceTree = "<group>"; };
+		D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
+		D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCollectionViewCell.swift; sourceTree = "<group>"; };
+		D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailCollectionViewCell.xib; sourceTree = "<group>"; };
 		D4563E352B162D06004855B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D465D88F2B1756FB0015633E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +70,59 @@
 			children = (
 				D42959152B14AE4B0015092E /* AppDelegate.swift */,
 				D42959172B14AE4B0015092E /* SceneDelegate.swift */,
-				D42959192B14AE4B0015092E /* ViewController.swift */,
-				D429591B2B14AE4B0015092E /* Main.storyboard */,
-				D465D88F2B1756FB0015633E /* ProfileViewController.swift */,
-				D4563E352B162D06004855B6 /* TabBarController.swift */,
+				D42959192B14AE4B0015092E /* SplashViewController.swift */,
+				D42B27D02B18FABF00E65B39 /* Tabs */,
+				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
+				D4B2DF322B1DDE6B004D4206 /* Extensions */,
 				D42959292B14DA6F0015092E /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
 				D42959232B14AE4D0015092E /* Info.plist */,
 			);
 			path = cocktailApp;
+			sourceTree = "<group>";
+		};
+		D42B27CD2B18F79200E65B39 /* Cocktails */ = {
+			isa = PBXGroup;
+			children = (
+				D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */,
+				D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */,
+				D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */,
+			);
+			path = Cocktails;
+			sourceTree = "<group>";
+		};
+		D42B27CE2B18FA6B00E65B39 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D429591B2B14AE4B0015092E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D42B27D02B18FABF00E65B39 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				D42B27CD2B18F79200E65B39 /* Cocktails */,
+				D4B2DF332B1DDEBF004D4206 /* Profile */,
+				D4563E352B162D06004855B6 /* TabBarController.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		D4B2DF322B1DDE6B004D4206 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D4B2DF332B1DDEBF004D4206 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D465D88F2B1756FB0015633E /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +185,7 @@
 			files = (
 				D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */,
 				D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */,
+				D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */,
 				D429591D2B14AE4B0015092E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,11 +197,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D429591A2B14AE4B0015092E /* ViewController.swift in Sources */,
+				D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */,
+				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
+				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D4563E362B162D06004855B6 /* TabBarController.swift in Sources */,
 				D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */,
 				D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */,
 				D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */,
+				D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,8 +353,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Splash screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,8 +380,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Splash screen.storyboard";
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
