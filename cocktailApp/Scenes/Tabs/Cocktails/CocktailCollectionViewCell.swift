@@ -32,7 +32,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         drinkImageView.setImage(with: drink)
         addToFavoritesButton.setImage(UIImage(named: "favoritesOff"), for: .normal)
         
-        //Settig layer
+        //Setting layer
         layer.cornerRadius = 4
         layer.shadowRadius = 2
         layer.shadowColor = UIColor.gray.cgColor
