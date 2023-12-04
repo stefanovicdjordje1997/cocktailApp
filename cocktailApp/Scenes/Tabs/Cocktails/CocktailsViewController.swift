@@ -20,6 +20,7 @@ class CocktailsViewController: UIViewController {
     var filterButton = UIButton(type: .custom)
     var searchBarButtonItem = UIBarButtonItem()
     var filterBarButtonItem = UIBarButtonItem()
+    var drinks: [Drink] = []
     
     // MARK: - Lifecycle
     
@@ -28,7 +29,7 @@ class CocktailsViewController: UIViewController {
         
         setupValues()
         setupCollectionView()
-        
+        fetchingDrinkData()
     }
     
     // MARK: - Set up
@@ -90,6 +91,14 @@ class CocktailsViewController: UIViewController {
         return gradientLayer
     }
     
+    func fetchingDrinkData() {
+        ApiManager.fetchDrinks() { apiDrinks in
+            self.drinks = apiDrinks
+            DispatchQueue.main.async {
+                self.cocktailsCollectionView.reloadData()
+            }
+        }
+    }
     
 }
 
@@ -111,12 +120,12 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return drinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
-        cell.setupCell()
+        cell.setupCell(with: drinks[indexPath.row])
         return cell
     }
     
