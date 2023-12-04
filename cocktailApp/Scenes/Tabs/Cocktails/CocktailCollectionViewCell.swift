@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CocktailCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Properties
     
     static let identifier = "CocktailCollectionViewCell"
     
@@ -17,13 +19,20 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addToFavoritesButton: UIButton!
     var isFavorite: Bool = false
     
+    // MARK: - Lifecycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
+    // MARK: - Set up
+    
     func setupCell(with drink: Drink) {
         drinkNameLabel.text = drink.strDrink
+        drinkImageView.setImage(with: drink)
         addToFavoritesButton.setImage(UIImage(named: "favoritesOff"), for: .normal)
+        
+        //Setting layer
         layer.cornerRadius = 4
         layer.shadowRadius = 2
         layer.shadowColor = UIColor.gray.cgColor
@@ -31,6 +40,8 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.masksToBounds = false
     }
+    
+    // MARK: - Actions
     
     @IBAction func addToFavorites(_ sender: Any) {
         print("addToFavoritesButton clicked")

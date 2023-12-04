@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
         setupNavBar()
     }
     
-    // MARK: - Functions
+    // MARK: - TabBar
     
     func setupTabBar() {
         //Set up the tabBar color
@@ -55,6 +55,8 @@ class TabBarController: UITabBarController {
             item3.selectedImage = UIImage(systemName: "person.fill")
         }
     }
+    
+    // MARK: - NavBar
     
     func setupNavBar() {
         //Set up up the navigationBar

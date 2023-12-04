@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class CocktailsViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class CocktailsViewController: UIViewController {
     var searchBarButtonItem = UIBarButtonItem()
     var filterBarButtonItem = UIBarButtonItem()
     var drinks: [Drink] = []
+    let loader = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100),type: .orbit, color: .primaryDark)
     
     // MARK: - Lifecycle
     
@@ -37,6 +39,7 @@ class CocktailsViewController: UIViewController {
     func setupValues() {
         setupLabel()
         setupTabBarButtons()
+        setupLoader()
     }
     
     func setupLabel() {
@@ -74,6 +77,12 @@ class CocktailsViewController: UIViewController {
         }
     }
     
+    func setupLoader() {
+        loader.center = view.center
+        view.addSubview(loader)
+        loader.startAnimating()
+    }
+    
     func getGradientLayer() -> CAGradientLayer {
         // Creating a new gradient layer
         let gradientLayer = CAGradientLayer()
@@ -91,15 +100,17 @@ class CocktailsViewController: UIViewController {
         return gradientLayer
     }
     
+    // MARK: - Api
+    
     func fetchingDrinkData() {
-        ApiManager.fetchDrinks() { apiDrinks in
-            self.drinks = apiDrinks
-            DispatchQueue.main.async {
-                self.cocktailsCollectionView.reloadData()
+        ApiManager.fetchDrinks() { [weak self] apiDrinks in
+            self?.drinks = apiDrinks
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self?.loader.stopAnimating()
+                self?.cocktailsCollectionView.reloadData()
             }
         }
     }
-    
 }
 
 // MARK: - CollectionView

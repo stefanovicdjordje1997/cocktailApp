@@ -65,17 +65,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setupEmailTextField() {
-        //Setup emailEditButton
-        emailEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-        emailEditButton.addTarget(self, action: #selector(enableEmailEdit), for: .touchUpInside)
-        emailEditButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        
         //Setup emailTextField
         emailTextField.text = "example@email.com"
-        emailTextField.delegate = self
-        emailTextField.rightViewMode = UITextField.ViewMode.always
-        emailTextField.rightViewMode = .always
-        emailTextField.rightView = emailEditButton
+        emailTextField.isEnabled = false
     }
     
     func setupPasswordTextField() {
@@ -86,6 +78,7 @@ class ProfileViewController: UIViewController {
         
         //Setup passwordTextField
         passwordTextField.text = "password123"
+        passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
         passwordTextField.rightViewMode = UITextField.ViewMode.always
         passwordTextField.rightViewMode = .always
@@ -109,30 +102,18 @@ class ProfileViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @objc func enableEmailEdit() {
-        if !isEmailEnabled {
-            emailTextField.allowsEditingTextAttributes = true
-            emailEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            isEmailEnabled = true
-            print("Email editing enabled.")
-        } else {
-            emailEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-            emailTextField.resignFirstResponder()
-            isEmailEnabled = false
-            print("Email editing disabled.")
-        }
-    }
-    
     @objc func enablePasswordEdit() {
         if !isPasswordEnabled {
             passwordTextField.allowsEditingTextAttributes = true
             passwordEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
             isPasswordEnabled = true
+            passwordTextField.isSecureTextEntry = false
             print("Password editing enabled.")
         } else {
             passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
             passwordTextField.resignFirstResponder()
             isPasswordEnabled = false
+            passwordTextField.isSecureTextEntry = true
             print("Password editing disabled.")
         }
     }
