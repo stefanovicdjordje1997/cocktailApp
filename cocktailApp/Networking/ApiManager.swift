@@ -28,9 +28,8 @@ class ApiManager {
                 }
                 if let data {
                     //Decode response
-                    let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data)
-                    if let drinksWrapper = decodedResponse {
-                        completionHandler(.success(drinksWrapper.drinks))
+                    if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
+                        completionHandler(.success(decodedResponse.drinks))
                     } else {
                         completionHandler(.failure(DrinkErrors.decodingError))
                     }
