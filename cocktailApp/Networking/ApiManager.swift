@@ -35,7 +35,7 @@ class ApiManager {
                         completionHandler(.failure(DrinkErrors.decodingError))
                     }
                 } else {
-                    completionHandler(.failure(DrinkErrors.noDataError))
+                    completionHandler(.failure(NetworkErrors.noDataError))
                 }
             }
             task.resume()

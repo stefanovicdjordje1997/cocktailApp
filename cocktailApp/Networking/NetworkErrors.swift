@@ -11,11 +11,16 @@ import Foundation
 
 enum NetworkErrors: LocalizedError {
     case invalidUrlError
+    case noDataError
     
     var localizedDescription: String {
         switch self {
+            
         case .invalidUrlError:
             return "Url provided is not valid."
+            
+        case .noDataError:
+            return "Server didn't return data."
         }
     }
 }
@@ -25,7 +30,6 @@ enum NetworkErrors: LocalizedError {
 enum DrinkErrors: LocalizedError {
     case apiError
     case decodingError
-    case noDataError
     
     var localizedDescription: String {
         switch self {
@@ -35,10 +39,6 @@ enum DrinkErrors: LocalizedError {
             
         case .decodingError:
             return "Error decoding model data."
-            
-        case .noDataError:
-            return "Server didn't return data."
-            
         }
     }
 }
