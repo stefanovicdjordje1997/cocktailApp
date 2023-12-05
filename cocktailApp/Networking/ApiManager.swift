@@ -8,9 +8,14 @@
 import Foundation
 
 class ApiManager {
+    
+    // MARK: - Base url
+    
     static let baseUrl = "https://www.thecocktaildb.com/api/json/v1/1/"
     
-    static func fetchDrinks(completionHandler: @escaping ([Drink]) -> Void) {
+    // MARK: - Fetch drinks
+    
+    static func fetchDrinks(completionHandler: @escaping (Result<[Drink], Error>) -> Void) {
         let endpoint = "filter.php?a=Alcoholic"
         //Create URL
         if let url = URL(string: baseUrl + endpoint) {
@@ -18,25 +23,25 @@ class ApiManager {
             //Create URL session
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error {
-                    print("Error fetching")
+                    completionHandler(.failure(DrinkErrors.apiError))
                     return
                 }
                 if let data {
                     //Decode response
-                    let drinkWrapper = try? JSONDecoder().decode(DrinkWrapper.self, from: data)
-                    completionHandler(drinkWrapper?.drinks ?? [])
-                    //print(drinks)
+                    let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data)
+                    if let drinksWrapper = decodedResponse {
+                        completionHandler(.success(drinksWrapper.drinks))
+                    } else {
+                        completionHandler(.failure(DrinkErrors.decodingError))
+                    }
                 } else {
-                    print("Error: No data")
+                    completionHandler(.failure(DrinkErrors.noDataError))
                 }
             }
             task.resume()
             
         } else {
-            print("Error creating url")
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
         }
-        
-        
-
     }
 }
