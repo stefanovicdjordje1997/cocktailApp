@@ -103,11 +103,18 @@ class CocktailsViewController: UIViewController {
     // MARK: - Api
     
     func fetchingDrinkData() {
-        ApiManager.fetchDrinks() { [weak self] apiDrinks in
-            self?.drinks = apiDrinks
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self?.loader.stopAnimating()
-                self?.cocktailsCollectionView.reloadData()
+        ApiManager.fetchDrinks { [weak self] result in
+            switch result {
+                
+            case .success(let apiDrinks):
+                self?.drinks = apiDrinks
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self?.loader.stopAnimating()
+                    self?.cocktailsCollectionView.reloadData()
+                }
+            
+            case .failure(let error):
+                self?.showAlert(title: "Oops", message: "Something went wrong 😕")
             }
         }
     }
