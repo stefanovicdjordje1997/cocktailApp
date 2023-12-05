@@ -22,7 +22,7 @@ class ApiManager {
             
             //Create URL session
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let error {
+                if error != nil {
                     completionHandler(.failure(DrinkErrors.apiError))
                     return
                 }
@@ -39,7 +39,6 @@ class ApiManager {
                 }
             }
             task.resume()
-            
         } else {
             completionHandler(.failure(NetworkErrors.invalidUrlError))
         }
