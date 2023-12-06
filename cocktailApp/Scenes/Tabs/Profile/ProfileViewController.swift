@@ -108,6 +108,7 @@ class ProfileViewController: UIViewController {
             passwordEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
             isPasswordEnabled = true
             passwordTextField.isSecureTextEntry = false
+            passwordTextField.becomeFirstResponder()
             print("Password editing enabled.")
         } else {
             passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)

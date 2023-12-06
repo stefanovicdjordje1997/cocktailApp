@@ -16,6 +16,8 @@
 		D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */; };
 		D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */; };
 		D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */; };
+		D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */; };
+		D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4530D002B208737004135B0 /* CocktailsEmptyView.xib */; };
 		D4563E362B162D06004855B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4563E352B162D06004855B6 /* TabBarController.swift */; };
 		D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465D88F2B1756FB0015633E /* ProfileViewController.swift */; };
 		D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */; };
@@ -27,6 +29,7 @@
 		D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */; };
 		D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF342B1DE3DD004D4206 /* Drink.swift */; };
 		D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */; };
+		D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,8 @@
 		D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsEmptyView.swift; sourceTree = "<group>"; };
+		D4530D002B208737004135B0 /* CocktailsEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailsEmptyView.xib; sourceTree = "<group>"; };
 		D4563E352B162D06004855B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D465D88F2B1756FB0015633E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -49,6 +54,7 @@
 		D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D4B2DF342B1DE3DD004D4206 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,8 @@
 				D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */,
 				D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */,
 				D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */,
+				D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */,
+				D4530D002B208737004135B0 /* CocktailsEmptyView.xib */,
 			);
 			path = Cocktails;
 			sourceTree = "<group>";
@@ -132,6 +140,7 @@
 				D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */,
 				D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */,
 				D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */,
+				D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */,
+				D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */,
 				D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */,
 				D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */,
 				D429591D2B14AE4B0015092E /* Main.storyboard in Resources */,
@@ -259,9 +269,11 @@
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,
 				D4563E362B162D06004855B6 /* TabBarController.swift in Sources */,
+				D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */,
 				D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */,
 				D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */,
 				D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */,
+				D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */,
 				D49BEDC92B1E0C4900A7FD9A /* UIImageView+Extension.swift in Sources */,
 				D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */,
 			);

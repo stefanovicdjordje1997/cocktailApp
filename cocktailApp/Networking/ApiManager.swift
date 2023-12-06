@@ -42,4 +42,34 @@ class ApiManager {
             completionHandler(.failure(NetworkErrors.invalidUrlError))
         }
     }
+    
+    // MARK: - Search drinks
+    
+    static func searchDrinks(input: String, completionHandler: @escaping (Result<[Drink], Error>) -> Void) {
+        let endpoint = "search.php?s=\(input)"
+        //Create URL
+        if let url = URL(string: baseUrl + endpoint) {
+            
+            //Create URL session
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if error != nil {
+                    completionHandler(.failure(DrinkErrors.apiError))
+                    return
+                }
+                if let data {
+                    //Decode response
+                    if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
+                        completionHandler(.success(decodedResponse.drinks))
+                    } else {
+                        completionHandler(.failure(DrinkErrors.decodingError))
+                    }
+                } else {
+                    completionHandler(.failure(NetworkErrors.noDataError))
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
+        }
+    }
 }
