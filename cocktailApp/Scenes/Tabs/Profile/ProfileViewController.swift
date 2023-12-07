@@ -89,6 +89,7 @@ class ProfileViewController: UIViewController {
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.backgroundColor = UIColor.brown.withAlphaComponent(0.5)
         logoutButton.tintColor = UIColor.white
+        logoutButton.titleLabel?.font = UIFont(name: "Caveat-Regular", size: 17)
     }
     
     func configureTapGesture() {
