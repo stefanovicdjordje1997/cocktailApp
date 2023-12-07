@@ -26,8 +26,8 @@ class CocktailsViewController: UIViewController {
     var drinksFromSearch: [Drink] = [] {
         didSet {
             DispatchQueue.main.async {
-                if self.search.isActive && self.drinksFromSearch.isEmpty {
-                    let emptyView  = Bundle.main.loadNibNamed("CocktailsEmptyView", owner: self)?.first as? UIView
+                if self.search.searchBar.text?.isEmpty == false && self.drinksFromSearch.isEmpty {
+                    let emptyView  = Bundle.main.loadNibNamed(CocktailsEmptyView.identifier, owner: self)?.first as? UIView
                     self.cocktailsCollectionView.backgroundView = emptyView
                 } else {
                     self.cocktailsCollectionView.backgroundView = nil
@@ -45,6 +45,9 @@ class CocktailsViewController: UIViewController {
         setupValues()
         setupCollectionView()
         fetchingDrinkData()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
     }
     
     // MARK: - Set up
@@ -138,10 +141,12 @@ class CocktailsViewController: UIViewController {
     func showDefaultDrinks() {
         //Showing drinks loaded from api
         drinksFromSearch = []
-        search.isActive = false
-        cocktailsCollectionView.showAnimation()
         resultsLabel.text = "Alcoholic"
-        cocktailsCollectionView.reloadData()
+        cocktailsCollectionView.showAnimation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.cocktailsCollectionView.reloadData()
+        }
     }
     
     // MARK: - Actions
@@ -149,16 +154,26 @@ class CocktailsViewController: UIViewController {
     @objc func toggleSearchBar() {
         //Showing and hiding the searchBar from navigationBar
         if self.navigationItem.searchController == nil {
-            search.isActive = true
+            //Setting the searchController
             navigationItem.searchController = search
+            DispatchQueue.main.async {
+                self.navigationItem.searchController?.searchBar.becomeFirstResponder()
+            }
+            
         } else {
-            self.navigationItem.searchController = nil
-            //If drinksFromSearch is empty drinks are shown already
-            if !drinksFromSearch.isEmpty {
+            //Show default drinks only if the search bar isn't empty
+            if search.searchBar.text?.isEmpty == false {
                 showDefaultDrinks()
             }
+            //Setting the searchController to nil will make search bar dissappear
+            self.navigationItem.searchController = nil
         }
     }
+    
+    @objc func handleTap() {
+        //Hide the keyboard by resigning the first responder status from the search bar
+        search.searchBar.resignFirstResponder()
+        }
     
     // MARK: - Api
     
@@ -209,12 +224,12 @@ class CocktailsViewController: UIViewController {
 extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return search.isActive ? drinksFromSearch.count : drinks.count
+        return search.searchBar.text?.isEmpty == false ? drinksFromSearch.count : drinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
-        cell.setupCell(with: search.isActive ? drinksFromSearch[indexPath.row] : drinks[indexPath.row])
+        cell.setupCell(with: search.searchBar.text?.isEmpty == false ? drinksFromSearch[indexPath.row] : drinks[indexPath.row])
         return cell
     }
     
@@ -230,11 +245,11 @@ extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelega
     
     //Search when there are 3 characters or more
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count > 2 {
+        //if searchText.count > 2 {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             perform(#selector(searchDrinks), with: searchText, afterDelay: 0.5)
             resultsLabel.text = "Search: " + searchText
-        }
+        //}
         
         if searchText.isEmpty {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
