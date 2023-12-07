@@ -89,6 +89,7 @@ class ProfileViewController: UIViewController {
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.backgroundColor = UIColor.brown.withAlphaComponent(0.5)
         logoutButton.tintColor = UIColor.white
+        logoutButton.titleLabel?.font = UIFont(name: "Caveat-Regular", size: 17)
     }
     
     func configureTapGesture() {
@@ -108,6 +109,7 @@ class ProfileViewController: UIViewController {
             passwordEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
             isPasswordEnabled = true
             passwordTextField.isSecureTextEntry = false
+            passwordTextField.becomeFirstResponder()
             print("Password editing enabled.")
         } else {
             passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)

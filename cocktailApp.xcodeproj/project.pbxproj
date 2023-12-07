@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40DE18B2B21C73600387ABE /* Caveat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40DE18A2B21C73600387ABE /* Caveat-Regular.ttf */; };
+		D40DE18D2B21C9F700387ABE /* UIFont+CustomFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */; };
+		D40DE18F2B21CA2800387ABE /* Caveat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40DE18E2B21CA2800387ABE /* Caveat-Bold.ttf */; };
 		D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959152B14AE4B0015092E /* AppDelegate.swift */; };
 		D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959172B14AE4B0015092E /* SceneDelegate.swift */; };
 		D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42959192B14AE4B0015092E /* SplashViewController.swift */; };
@@ -16,6 +19,8 @@
 		D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */; };
 		D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */; };
 		D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */; };
+		D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */; };
+		D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4530D002B208737004135B0 /* CocktailsEmptyView.xib */; };
 		D4563E362B162D06004855B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4563E352B162D06004855B6 /* TabBarController.swift */; };
 		D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D465D88F2B1756FB0015633E /* ProfileViewController.swift */; };
 		D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */; };
@@ -27,9 +32,13 @@
 		D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */; };
 		D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF342B1DE3DD004D4206 /* Drink.swift */; };
 		D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */; };
+		D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D40DE18A2B21C73600387ABE /* Caveat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Caveat-Regular.ttf"; sourceTree = "<group>"; };
+		D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+CustomFont.swift"; sourceTree = "<group>"; };
+		D40DE18E2B21CA2800387ABE /* Caveat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Caveat-Bold.ttf"; sourceTree = "<group>"; };
 		D42959122B14AE4B0015092E /* cocktailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cocktailApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D42959152B14AE4B0015092E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D42959172B14AE4B0015092E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +50,8 @@
 		D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailCollectionViewCell.xib; sourceTree = "<group>"; };
+		D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsEmptyView.swift; sourceTree = "<group>"; };
+		D4530D002B208737004135B0 /* CocktailsEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailsEmptyView.xib; sourceTree = "<group>"; };
 		D4563E352B162D06004855B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D465D88F2B1756FB0015633E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -49,6 +60,7 @@
 		D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D4B2DF342B1DE3DD004D4206 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D40DE1892B21C6EA00387ABE /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				D40DE18A2B21C73600387ABE /* Caveat-Regular.ttf */,
+				D40DE18E2B21CA2800387ABE /* Caveat-Bold.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		D42959092B14AE4B0015092E = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +112,7 @@
 				D4B2DF3A2B1DE4F1004D4206 /* Networking */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
+				D40DE1892B21C6EA00387ABE /* Font */,
 				D42959292B14DA6F0015092E /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
 				D42959232B14AE4D0015092E /* Info.plist */,
@@ -104,6 +126,8 @@
 				D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */,
 				D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */,
 				D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */,
+				D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */,
+				D4530D002B208737004135B0 /* CocktailsEmptyView.xib */,
 			);
 			path = Cocktails;
 			sourceTree = "<group>";
@@ -132,6 +156,8 @@
 				D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */,
 				D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */,
 				D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */,
+				D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */,
+				D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */,
+				D40DE18F2B21CA2800387ABE /* Caveat-Bold.ttf in Resources */,
+				D40DE18B2B21C73600387ABE /* Caveat-Regular.ttf in Resources */,
+				D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */,
 				D429592A2B14DA6F0015092E /* Splash screen.storyboard in Resources */,
 				D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */,
 				D429591D2B14AE4B0015092E /* Main.storyboard in Resources */,
@@ -255,13 +284,16 @@
 				D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */,
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
+				D40DE18D2B21C9F700387ABE /* UIFont+CustomFont.swift in Sources */,
 				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,
 				D4563E362B162D06004855B6 /* TabBarController.swift in Sources */,
+				D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */,
 				D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */,
 				D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */,
 				D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */,
+				D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */,
 				D49BEDC92B1E0C4900A7FD9A /* UIImageView+Extension.swift in Sources */,
 				D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */,
 			);
@@ -407,6 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cocktailApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -434,6 +467,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cocktailApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
