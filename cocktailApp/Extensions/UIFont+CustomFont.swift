@@ -22,43 +22,43 @@ enum FontSize: CGFloat {
 
 extension UIFont {
     
-    static var caveatRegularExtraLarge: UIFont {
+    static var customFontRegularExtraLarge: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.extraLarge.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var caveatBoldLargeExtraLarge: UIFont {
+    static var customFontBoldLargeExtraLarge: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.extraLarge.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     
-    static var caveatRegularLarge: UIFont {
+    static var customFontRegularLarge: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.large.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var caveatBoldLarge: UIFont {
+    static var customFontBoldLarge: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.large.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     
-    static var caveatRegularNormal: UIFont {
+    static var customFontRegularNormal: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.normal.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var caveatBoldNormal: UIFont {
+    static var customFontBoldNormal: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.normal.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     
-    static var caveatRegularSmall: UIFont {
+    static var customFontRegularSmall: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.small.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var caveatBoldSmall: UIFont {
+    static var customFontBoldSmall: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.small.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     
-    static var caveatRegularExtraSmall: UIFont {
+    static var customFontRegularExtraSmall: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.extraSmall.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var caveatBoldExtraSmall: UIFont {
+    static var customFontBoldExtraSmall: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.extraSmall.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
 }

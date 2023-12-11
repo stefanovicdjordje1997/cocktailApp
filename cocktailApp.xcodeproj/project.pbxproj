@@ -35,10 +35,12 @@
 		D49BEDCC2B1E134B00A7FD9A /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDCB2B1E134B00A7FD9A /* NVActivityIndicatorView */; };
 		D49BEDCE2B1E134B00A7FD9A /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDCD2B1E134B00A7FD9A /* NVActivityIndicatorViewExtended */; };
 		D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49BEDCF2B1E244800A7FD9A /* NetworkErrors.swift */; };
-		D4ABD9CD2B222F07007F16E6 /* UIView+Extensioon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ABD9CC2B222F07007F16E6 /* UIView+Extensioon.swift */; };
+		D4ABD9CD2B222F07007F16E6 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */; };
 		D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */; };
 		D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF342B1DE3DD004D4206 /* Drink.swift */; };
 		D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */; };
+		D4B3902D2B274ACA0003EC50 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3902C2B274ACA0003EC50 /* Realm */; };
+		D4B3902F2B274ACA0003EC50 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3902E2B274ACA0003EC50 /* RealmSwift */; };
 		D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +72,7 @@
 		D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D49BEDCF2B1E244800A7FD9A /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
-		D4ABD9CC2B222F07007F16E6 /* UIView+Extensioon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensioon.swift"; sourceTree = "<group>"; };
+		D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D4B2DF342B1DE3DD004D4206 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
@@ -84,6 +86,8 @@
 			files = (
 				D49BEDCE2B1E134B00A7FD9A /* NVActivityIndicatorViewExtended in Frameworks */,
 				D49BEDCC2B1E134B00A7FD9A /* NVActivityIndicatorView in Frameworks */,
+				D4B3902D2B274ACA0003EC50 /* Realm in Frameworks */,
+				D4B3902F2B274ACA0003EC50 /* RealmSwift in Frameworks */,
 				D49BEDC72B1E0A5900A7FD9A /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,7 +213,7 @@
 				D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */,
 				D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */,
 				D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */,
-				D4ABD9CC2B222F07007F16E6 /* UIView+Extensioon.swift */,
+				D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,6 +273,8 @@
 				D49BEDC62B1E0A5900A7FD9A /* Kingfisher */,
 				D49BEDCB2B1E134B00A7FD9A /* NVActivityIndicatorView */,
 				D49BEDCD2B1E134B00A7FD9A /* NVActivityIndicatorViewExtended */,
+				D4B3902C2B274ACA0003EC50 /* Realm */,
+				D4B3902E2B274ACA0003EC50 /* RealmSwift */,
 			);
 			productName = cocktailApp;
 			productReference = D42959122B14AE4B0015092E /* cocktailApp.app */;
@@ -301,6 +307,7 @@
 			packageReferences = (
 				D49BEDC52B1E0A5900A7FD9A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D49BEDCA2B1E134B00A7FD9A /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				D4B3902B2B274ACA0003EC50 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = D42959132B14AE4B0015092E /* Products */;
 			projectDirPath = "";
@@ -335,7 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4ABD9CD2B222F07007F16E6 /* UIView+Extensioon.swift in Sources */,
+				D4ABD9CD2B222F07007F16E6 /* UIView+Extension.swift in Sources */,
 				D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */,
 				D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */,
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
@@ -588,6 +595,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		D4B3902B2B274ACA0003EC50 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -605,6 +620,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D49BEDCA2B1E134B00A7FD9A /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
 			productName = NVActivityIndicatorViewExtended;
+		};
+		D4B3902C2B274ACA0003EC50 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4B3902B2B274ACA0003EC50 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		D4B3902E2B274ACA0003EC50 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4B3902B2B274ACA0003EC50 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

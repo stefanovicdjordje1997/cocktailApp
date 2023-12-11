@@ -27,6 +27,6 @@ class CocktailsEmptyView: UIView {
     func setupLabel() {
         warrningMessageLabel.text = "No cocktails found 😕"
         warrningMessageLabel.textColor = .primaryDark
-        warrningMessageLabel.font = UIFont.caveatRegularExtraLarge
+        warrningMessageLabel.font = UIFont.customFontRegularExtraLarge
     }
 }

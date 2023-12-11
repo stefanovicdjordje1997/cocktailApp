@@ -60,7 +60,6 @@ class CocktailsViewController: UIViewController {
         setupNavBarButtons()
         setupLoader()
         setupSearchController()
-        //FilterDetailsViewController.filterDelegate = self
     }
     
     func setupLabel() {
@@ -165,7 +164,7 @@ class CocktailsViewController: UIViewController {
     @objc func openFilterMenu() {
         let filterViewController = FilterViewController.instantiate()
         filterViewController.filterDelegate = self
-        self.navigationController?.pushViewController(filterViewController, animated: true)
+        navigationController?.pushViewController(filterViewController, animated: true)
     }
     
     @objc func handleTap() {
