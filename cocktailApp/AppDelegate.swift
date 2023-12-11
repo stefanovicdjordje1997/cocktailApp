@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setDefaultFont() {
-        UILabel.appearance().font = UIFont.customFont
-        UITextField.appearance().font = UIFont.customFont
-        UITextView.appearance().font = UIFont.customFont
-        UIButton.appearance().titleLabel?.font = UIFont.customFont
+        UILabel.appearance().font = UIFont.caveatRegularLarge
+        UITextField.appearance().font = UIFont.caveatRegularLarge
+        UITextView.appearance().font = UIFont.caveatRegularLarge
+        UIButton.appearance().titleLabel?.font = UIFont.caveatRegularLarge
     }
 
 }

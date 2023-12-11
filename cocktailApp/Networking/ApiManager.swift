@@ -72,4 +72,64 @@ class ApiManager {
             completionHandler(.failure(NetworkErrors.invalidUrlError))
         }
     }
+    
+    // MARK: - Fetch drink categories
+    
+    static func fetchCategories(input: String, completionHandler: @escaping (Result<[DrinkCategory], Error>) -> Void) {
+        let endpoint = "list.php?\(input)=list"
+        //Create URL
+        if let url = URL(string: baseUrl + endpoint) {
+            
+            //Create URL session
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if error != nil {
+                    completionHandler(.failure(DrinkErrors.apiError))
+                    return
+                }
+                if let data {
+                    //Decode response
+                    if let decodedResponse = try? JSONDecoder().decode(DrinkCategoryWrapper.self, from: data) {
+                        completionHandler(.success(decodedResponse.drinks))
+                    } else {
+                        completionHandler(.failure(DrinkErrors.decodingError))
+                    }
+                } else {
+                    completionHandler(.failure(NetworkErrors.noDataError))
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
+        }
+    }
+    
+    // MARK: - Filter drinks
+    
+    static func filterDrinks(categoryType: String, input: String, completionHandler: @escaping (Result<[Drink], Error>) -> Void) {
+        let endpoint = "filter.php?\(categoryType)=\(input)"
+        //Create URL
+        if let url = URL(string: baseUrl + endpoint) {
+            
+            //Create URL session
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if error != nil {
+                    completionHandler(.failure(DrinkErrors.apiError))
+                    return
+                }
+                if let data {
+                    //Decode response
+                    if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
+                        completionHandler(.success(decodedResponse.drinks))
+                    } else {
+                        completionHandler(.failure(DrinkErrors.decodingError))
+                    }
+                } else {
+                    completionHandler(.failure(NetworkErrors.noDataError))
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
+        }
+    }
 }

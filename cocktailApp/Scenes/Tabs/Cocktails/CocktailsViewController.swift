@@ -45,19 +45,22 @@ class CocktailsViewController: UIViewController {
         setupValues()
         setupCollectionView()
         fetchingDrinkData()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture)
+        configureTapGesture()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        backgroundView.setMainGradient()
     }
     
     // MARK: - Set up
     
     func setupValues() {
         setupLabel()
-        setupTabBarButtons()
+        setupNavBarButtons()
         setupLoader()
         setupSearchController()
-        backgroundView.layer.insertSublayer(getGradientLayer(), at: 0)
+        //FilterDetailsViewController.filterDelegate = self
     }
     
     func setupLabel() {
@@ -86,11 +89,12 @@ class CocktailsViewController: UIViewController {
         cocktailsCollectionView.backgroundColor = UIColor.clear
     }
     
-    func setupTabBarButtons() {
-        //Setting up buttons on tabBar
+    func setupNavBarButtons() {
+        //Setting up buttons on navBar
         setupBarButton(barButtonItem: &filterBarButtonItem, button: &filterButton, buttonIcon: "line.3.horizontal.decrease.circle")
         setupBarButton(barButtonItem: &searchBarButtonItem, button: &searchButton, buttonIcon: "magnifyingglass.circle")
         searchButton.addTarget(self, action: #selector(toggleSearchBar), for: .touchUpInside)
+        filterButton.addTarget(self, action: #selector(openFilterMenu), for: .touchUpInside)
     }
     
     func setupBarButton(barButtonItem: inout UIBarButtonItem, button: inout UIButton, buttonIcon: String) {
@@ -121,21 +125,9 @@ class CocktailsViewController: UIViewController {
         search.searchBar.setShowsCancelButton(false, animated: false)
     }
     
-    func getGradientLayer() -> CAGradientLayer {
-        // Creating a new gradient layer
-        let gradientLayer = CAGradientLayer()
-        // Set the colors and locations for the gradient layer
-        gradientLayer.colors = [UIColor.primaryDark.cgColor, UIColor.primaryLight.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        
-        // Set the start and end points for the gradient layer
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
-        
-        // Set the frame to the layer
-        gradientLayer.frame = view.frame
-        
-        return gradientLayer
+    func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
     }
     
     func showDefaultDrinks() {
@@ -168,6 +160,12 @@ class CocktailsViewController: UIViewController {
             //Setting the searchController to nil will make search bar dissappear
             self.navigationItem.searchController = nil
         }
+    }
+    
+    @objc func openFilterMenu() {
+        let filterViewController = FilterViewController.instantiate()
+        filterViewController.filterDelegate = self
+        self.navigationController?.pushViewController(filterViewController, animated: true)
     }
     
     @objc func handleTap() {
@@ -254,6 +252,20 @@ extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelega
         if searchText.isEmpty {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             showDefaultDrinks()
+        }
+    }
+}
+
+// MARK: - FilterDelegate
+
+extension CocktailsViewController: FilterDelegate {
+    func getFilteredDrinks(filteredDrinks: [Drink], filterLabel: String) {
+        self.cocktailsCollectionView.showAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.drinks = filteredDrinks
+            self.resultsLabel.text = filterLabel
+            self.cocktailsCollectionView.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
+            self.cocktailsCollectionView.reloadData()
         }
     }
 }

@@ -30,13 +30,13 @@ class TabBarController: UITabBarController {
         appearance.backgroundColor = .primaryDark
         appearance.stackedLayoutAppearance.normal.iconColor = .white.withAlphaComponent(0.5)
         appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white.withAlphaComponent(0.5)]
-        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont(name: "Caveat-Regular", size: 15) ?? UIFont.customFont]
-        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont(name: "Caveat-Regular", size: 15) ?? UIFont.customFont]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.caveatRegularSmall]
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.caveatRegularSmall]
         
         tabBar.scrollEdgeAppearance = appearance
         tabBar.standardAppearance = appearance
         
-        UIBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.customFont], for: .normal)
+        UIBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.caveatRegularLarge], for: .normal)
         
         //Set uo the tabBar border
         tabBar.layer.borderWidth = 0.5
@@ -46,8 +46,8 @@ class TabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.5)
         
         // Customize the font for tabBar items
-            let customFontAttribute = [NSAttributedString.Key.font: UIFont.customFont]
-            let customSelectedFontAttribute = [NSAttributedString.Key.font: UIFont.customBoldFont]
+            let customFontAttribute = [NSAttributedString.Key.font: UIFont.caveatRegularLarge]
+            let customSelectedFontAttribute = [NSAttributedString.Key.font: UIFont.caveatBoldLarge]
 
             if let tabBarItems = tabBar.items {
                 for item in tabBarItems {
@@ -79,10 +79,16 @@ class TabBarController: UITabBarController {
     
     func setupNavBar() {
         //Set up up the navigationBar
+        let attributes = [NSAttributedString.Key.font: UIFont.caveatBoldLarge, NSAttributedString.Key.foregroundColor: UIColor.black]
         let appearance = UINavigationBarAppearance()
+        
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .primaryLight
-        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.customBoldFont]
+        appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.caveatBoldLarge]
+        appearance.titleTextAttributes = attributes
+        appearance.buttonAppearance.normal.titleTextAttributes = attributes
+        
+        UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
     }

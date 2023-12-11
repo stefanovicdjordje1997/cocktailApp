@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Filter View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="Y6W-OH-hqX" customClass="FilterViewController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="filterView">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yTz-Dx-gP1">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MeR-KM-X76">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MeR-KM-X76" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="8nJ-Pl-99O"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="yTz-Dx-gP1" secondAttribute="bottom" id="9ZU-JP-pgJ"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="MeR-KM-X76" secondAttribute="bottom" id="Cgl-7V-3lj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="MeR-KM-X76" secondAttribute="trailing" id="HcZ-1W-YFO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="yTz-Dx-gP1" secondAttribute="trailing" id="LUB-Jz-0Tk"/>
+                            <constraint firstItem="MeR-KM-X76" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="g3P-ls-GHF"/>
+                            <constraint firstItem="yTz-Dx-gP1" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="uWZ-tQ-pAg"/>
+                            <constraint firstItem="yTz-Dx-gP1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zBO-7n-BTB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="yTz-Dx-gP1" id="EvX-8r-MsY"/>
+                        <outlet property="filterTableView" destination="MeR-KM-X76" id="jyx-Wm-des"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="-34"/>
+        </scene>
+        <!--Filter Details View Controller-->
+        <scene sceneID="IhM-rg-r5f">
+            <objects>
+                <viewController storyboardIdentifier="FilterDetailsViewController" id="xHT-hl-4F6" customClass="FilterDetailsViewController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EfB-aH-Mf3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkk-Zt-z3k">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IcX-QS-DxF">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="moG-fk-fpb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IcX-QS-DxF" firstAttribute="leading" secondItem="moG-fk-fpb" secondAttribute="leading" id="8d3-69-Acv"/>
+                            <constraint firstItem="nkk-Zt-z3k" firstAttribute="top" secondItem="moG-fk-fpb" secondAttribute="top" id="Rib-wc-Mof"/>
+                            <constraint firstItem="moG-fk-fpb" firstAttribute="trailing" secondItem="IcX-QS-DxF" secondAttribute="trailing" id="XKX-UU-Phh"/>
+                            <constraint firstItem="moG-fk-fpb" firstAttribute="bottom" secondItem="IcX-QS-DxF" secondAttribute="bottom" id="b8M-SI-w0z"/>
+                            <constraint firstItem="IcX-QS-DxF" firstAttribute="top" secondItem="moG-fk-fpb" secondAttribute="top" id="eFh-xr-JPd"/>
+                            <constraint firstItem="moG-fk-fpb" firstAttribute="bottom" secondItem="nkk-Zt-z3k" secondAttribute="bottom" id="fRu-OJ-x9c"/>
+                            <constraint firstItem="moG-fk-fpb" firstAttribute="trailing" secondItem="nkk-Zt-z3k" secondAttribute="trailing" id="iHK-Xi-HF4"/>
+                            <constraint firstItem="nkk-Zt-z3k" firstAttribute="leading" secondItem="moG-fk-fpb" secondAttribute="leading" id="yok-AV-g5g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="nkk-Zt-z3k" id="CJn-xd-ycM"/>
+                        <outlet property="filterTableView" destination="IcX-QS-DxF" id="x5o-zm-cdR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="594-y2-FDQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="853" y="-35"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
