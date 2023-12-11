@@ -15,4 +15,20 @@ extension UIViewController {
             self.present(alert, animated: true)
         }
     }
+    
+    func getMainGradient(view: UIView) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        // Set the colors and locations for the gradient layer
+        gradientLayer.colors = [UIColor.primaryDark.cgColor, UIColor.primaryLight.cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        
+        // Set the start and end points for the gradient layer
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        
+        // Set the frame to the layer
+        gradientLayer.frame = view.frame
+        
+        return gradientLayer
+    }
 }
