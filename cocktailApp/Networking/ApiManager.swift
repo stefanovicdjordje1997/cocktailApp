@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class ApiManager {
     
@@ -15,8 +16,8 @@ class ApiManager {
     
     // MARK: - Fetch drinks
     
-    static func fetchDrinks(completionHandler: @escaping (Result<[Drink], Error>) -> Void) {
-        let endpoint = "filter.php?a=Alcoholic"
+    static func fetchDrinks(alcoholic: Category, completionHandler: @escaping (Result<[Drink], Error>) -> Void) {
+        let endpoint = "filter.php?a=\(alcoholic.rawValue)"
         //Create URL
         if let url = URL(string: baseUrl + endpoint) {
             
@@ -29,7 +30,10 @@ class ApiManager {
                 if let data {
                     //Decode response
                     if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
-                        completionHandler(.success(decodedResponse.drinks))
+                        var drinks = decodedResponse.drinks
+                        //Set values for isFavorite and category properties and save drinks to Realm
+                        saveToRealm(drinks: &drinks, alcoholic: alcoholic)
+                        completionHandler(.success(drinks))
                     } else {
                         completionHandler(.failure(DrinkErrors.decodingError))
                     }
@@ -130,6 +134,58 @@ class ApiManager {
             task.resume()
         } else {
             completionHandler(.failure(NetworkErrors.invalidUrlError))
+        }
+    }
+    
+    // MARK: - Fetch drink by name
+    
+    static func fetchDrinkByName(name: String, completionHandler: @escaping (Result<Drink, Error>) -> Void)  {
+        let endpoint = "search.php?s=\(name)"
+        //Create URL
+        if let url = URL(string: baseUrl + endpoint) {
+            
+            //Create URL session
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if error != nil {
+                    completionHandler(.failure(DrinkErrors.apiError))
+                    return
+                }
+                if let data {
+                    //Decode response
+                    if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
+                        completionHandler(.success(decodedResponse.drinks[0]))
+                    } else {
+                        completionHandler(.failure(DrinkErrors.decodingError))
+                    }
+                } else {
+                    completionHandler(.failure(NetworkErrors.noDataError))
+                }
+            }
+            task.resume()
+        } else {
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
+        }
+    }
+    
+    // MARK: - Save to realm function
+    
+    private static func saveToRealm(drinks: inout [Drink], alcoholic: Category) {
+        let realm = try! Realm()
+        for i in 0..<drinks.count {
+            //Set the category property
+            drinks[i].strAlcoholic = alcoholic.rawValue
+            //Set the favorite property
+            if realm.objects(RealmDrink.self).filter("id == %@", drinks[i].idDrink as Any).first?.isFavorite == true {
+                drinks[i].isFavorite = true
+            } else {
+                drinks[i].isFavorite = false
+            }
+            //Check if the drink exists in Realm, and if not add it
+            if realm.objects(RealmDrink.self).filter("id == %@", drinks[i].idDrink as Any).first == nil {
+                try! realm.write {
+                    realm.add(RealmDrink(drink: drinks[i]))
+                }
+            }
         }
     }
 }

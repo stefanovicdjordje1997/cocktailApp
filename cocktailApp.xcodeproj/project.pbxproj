@@ -41,6 +41,10 @@
 		D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */; };
 		D4B3902D2B274ACA0003EC50 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3902C2B274ACA0003EC50 /* Realm */; };
 		D4B3902F2B274ACA0003EC50 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3902E2B274ACA0003EC50 /* RealmSwift */; };
+		D4B390322B279AE80003EC50 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B390312B279AE80003EC50 /* FavoritesViewController.swift */; };
+		D4B390342B27B2610003EC50 /* RealmDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B390332B27B2610003EC50 /* RealmDrink.swift */; };
+		D4B390362B2897F10003EC50 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B390352B2897F10003EC50 /* RealmManager.swift */; };
+		D4D3E4C72B2B294000A5DF9D /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D3E4C62B2B294000A5DF9D /* HeaderCollectionReusableView.swift */; };
 		D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +80,10 @@
 		D4B2DF302B1DD511004D4206 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		D4B2DF342B1DE3DD004D4206 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		D4B2DF382B1DE4E4004D4206 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		D4B390312B279AE80003EC50 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		D4B390332B27B2610003EC50 /* RealmDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDrink.swift; sourceTree = "<group>"; };
+		D4B390352B2897F10003EC50 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		D4D3E4C62B2B294000A5DF9D /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,8 +171,10 @@
 				D42959152B14AE4B0015092E /* AppDelegate.swift */,
 				D42959172B14AE4B0015092E /* SceneDelegate.swift */,
 				D4B2DF372B1DE437004D4206 /* Scenes */,
+				D42B27D02B18FABF00E65B39 /* Tabs */,
 				D4B2DF362B1DE3E8004D4206 /* Models */,
 				D4B2DF3A2B1DE4F1004D4206 /* Networking */,
+				D4B390372B2897F50003EC50 /* Database */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
 				D40DE1892B21C6EA00387ABE /* Font */,
@@ -199,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				D42B27CD2B18F79200E65B39 /* Cocktails */,
+				D4B390302B2799CE0003EC50 /* Favorites */,
 				D4B2DF332B1DDEBF004D4206 /* Profile */,
 				D4563E352B162D06004855B6 /* TabBarController.swift */,
 			);
@@ -231,6 +242,7 @@
 			children = (
 				D4B2DF342B1DE3DD004D4206 /* Drink.swift */,
 				D48B3F7A2B2334990043D81F /* DrinkCategory.swift */,
+				D4B390332B27B2610003EC50 /* RealmDrink.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				D42959192B14AE4B0015092E /* SplashViewController.swift */,
-				D42B27D02B18FABF00E65B39 /* Tabs */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -251,6 +262,23 @@
 				D49BEDCF2B1E244800A7FD9A /* NetworkErrors.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		D4B390302B2799CE0003EC50 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				D4B390312B279AE80003EC50 /* FavoritesViewController.swift */,
+				D4D3E4C62B2B294000A5DF9D /* HeaderCollectionReusableView.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		D4B390372B2897F50003EC50 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D4B390352B2897F10003EC50 /* RealmManager.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +376,9 @@
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
 				D40DE19A2B220F8C00387ABE /* FilterViewController.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
+				D4B390322B279AE80003EC50 /* FavoritesViewController.swift in Sources */,
 				D40DE18D2B21C9F700387ABE /* UIFont+CustomFont.swift in Sources */,
+				D4D3E4C72B2B294000A5DF9D /* HeaderCollectionReusableView.swift in Sources */,
 				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,
@@ -358,11 +388,13 @@
 				D465D8902B1756FB0015633E /* ProfileViewController.swift in Sources */,
 				D42959162B14AE4B0015092E /* AppDelegate.swift in Sources */,
 				D42959182B14AE4B0015092E /* SceneDelegate.swift in Sources */,
+				D4B390362B2897F10003EC50 /* RealmManager.swift in Sources */,
 				D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */,
 				D48B3F792B231BCF0043D81F /* FilterDetailsViewController.swift in Sources */,
 				D49BEDC92B1E0C4900A7FD9A /* UIImageView+Extension.swift in Sources */,
 				D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */,
 				D48B3F7B2B2334990043D81F /* DrinkCategory.swift in Sources */,
+				D4B390342B27B2610003EC50 /* RealmDrink.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,9 +7,13 @@
 
 import Foundation
 
+// MARK: - DrinkCategoryWrapper
+
 struct DrinkCategoryWrapper: Decodable {
     var drinks: [DrinkCategory]
 }
+
+// MARK: - DrinkCategory
 
 struct DrinkCategory: Decodable {
     var strAlcoholic: String?
