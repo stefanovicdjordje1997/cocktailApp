@@ -20,10 +20,10 @@ class RealmDrink: Object {
     
     convenience init(drink: Drink) {
         self.init()
-        self.name = drink.strDrink 
-        self.image = drink.strDrinkThumb ?? ""
-        self.id = drink.idDrink 
-        self.category = drink.strAlcoholic ?? ""
+        self.name = drink.name 
+        self.image = drink.image ?? ""
+        self.id = drink.id 
+        self.category = drink.category ?? ""
         self.isFavorite = drink.isFavorite ?? false
     }
 }

@@ -22,9 +22,9 @@ class RealmManager {
     
     // MARK: - Public Methods
 
-    func addDrink(favoriteDrink: RealmDrink) {
+    func addDrink(realmDrink: RealmDrink) {
         try! realm.write {
-            realm.add(favoriteDrink)
+            realm.add(realmDrink)
         }
     }
 
@@ -33,7 +33,11 @@ class RealmManager {
     }
     
     func getFavoriteDrinks() -> Results<RealmDrink> {
-        return realm.objects(RealmDrink.self).filter("isFavorite == true")
+        return getDrinks().filter("isFavorite == true")
+    }
+    
+    func getAlcoholicDrinks() -> Results<RealmDrink> {
+        return getDrinks().filter("category == 'Alcoholic'")
     }
 
     func deleteDrink(favoriteDrink: RealmDrink) {
@@ -43,19 +47,22 @@ class RealmManager {
     }
     
     func contains(drink: Drink) -> Bool {
-        return realm.objects(RealmDrink.self).filter("id == %@", drink.idDrink as Any).first != nil
+        return getDrinks().contains(where: { $0.id == drink.id })
     }
     
     func getDrink(drink: Drink) -> RealmDrink? {
-        if contains(drink: drink) {
-            return realm.objects(RealmDrink.self).filter("id == %@", drink.idDrink as Any).first
-        }
-        return nil
+        return getDrinks().filter("id == %@", drink.id as Any).first
     }
     
     func setFavorite(with drink: Drink, isFavorite: Bool) {
         try! realm.write {
-            realm.objects(RealmDrink.self).filter("id == %@", drink.idDrink as Any).first?.isFavorite = isFavorite
+            getDrinks().filter("id == %@", drink.id as Any).first?.isFavorite = isFavorite
+        }
+    }
+    
+    func setCategory(with drink: Drink) {
+        try! realm.write {
+            getDrinks().filter("id == %@", drink.id as Any).first?.category = drink.category
         }
     }
 }

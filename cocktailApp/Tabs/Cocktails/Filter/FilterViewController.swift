@@ -10,7 +10,7 @@ import UIKit
 //MARK: - Protocol
 
 protocol FilterDelegate {
-    func getFilteredDrinks(filteredDrinks: [Drink], filterLabel: String)
+    func didFetchFilteredDrinks(filteredDrinks: [Drink], filterLabel: String)
 }
 
 class FilterViewController: UIViewController {
@@ -51,7 +51,6 @@ class FilterViewController: UIViewController {
         filterTableView.separatorInset = UIEdgeInsets.zero
         filterTableView.delegate = self
         filterTableView.dataSource = self
-        //filterTableView.reloadData()
     }
 }
 
@@ -118,6 +117,6 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension FilterViewController: FilterDetailsDelegare {
     func getFilteredDrinksDetails(filteredDrinksDtails: [Drink], filterTextDetails: String) {
-        filterDelegate?.getFilteredDrinks(filteredDrinks: filteredDrinksDtails, filterLabel: filterTextDetails)
+        filterDelegate?.didFetchFilteredDrinks(filteredDrinks: filteredDrinksDtails, filterLabel: filterTextDetails)
     }
 }

@@ -134,11 +134,11 @@ class CocktailsViewController: UIViewController {
     }
     
     func showDefaultDrinks() {
-        //Showing drinks that are already loaded from api
-        if resultsLabel.text != "Alcoholic" {
-            cocktailsCollectionView.showAnimation()
-            fetchingDrinkData()
+        drinks = []
+        for alcoholicDrink in RealmManager.instance.getAlcoholicDrinks() {
+            drinks.append(Drink(favoriteDrink: alcoholicDrink))
         }
+        
         drinksFromSearch = []
         resultsLabel.text = "Alcoholic"
         cocktailsCollectionView.showAnimation()
@@ -166,7 +166,6 @@ class CocktailsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.navigationItem.searchController?.searchBar.becomeFirstResponder()
             }
-            
         } else {
             //Show default drinks only if the search bar isn't empty
             if search.searchBar.text?.isEmpty == false {
@@ -178,15 +177,20 @@ class CocktailsViewController: UIViewController {
     }
     
     @objc func openFilterMenu() {
-        let filterViewController = FilterViewController.instantiate()
-        filterViewController.filterDelegate = self
-        navigationController?.pushViewController(filterViewController, animated: true)
+        //Hide search bar when filter menu is open
+        self.navigationItem.searchController = nil
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let filterViewController = FilterViewController.instantiate()
+            filterViewController.filterDelegate = self
+            self.navigationController?.pushViewController(filterViewController, animated: true)
+        }
     }
     
     @objc func handleTap() {
         //Hide the keyboard by resigning the first responder status from the search bar
         search.searchBar.resignFirstResponder()
-        }
+    }
     
     // MARK: - Api
     
@@ -204,6 +208,7 @@ class CocktailsViewController: UIViewController {
             case .failure(_):
                 self?.showAlert(title: "Oops", message: "Something went wrong 😕")
             }
+            
             DispatchQueue.main.async {
                 self?.loader.stopAnimating()
             }
@@ -257,13 +262,10 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
 
 extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelegate {
     
-    //Search when there are 3 characters or more
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //if searchText.count > 2 {
-            NSObject.cancelPreviousPerformRequests(withTarget: self)
-            perform(#selector(searchDrinks), with: searchText, afterDelay: 0.5)
-            resultsLabel.text = "Search: " + searchText
-        //}
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        perform(#selector(searchDrinks), with: searchText, afterDelay: 0.5)
+        resultsLabel.text = "Search: " + searchText
         
         if searchText.isEmpty {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
@@ -276,7 +278,7 @@ extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelega
 
 extension CocktailsViewController: FilterDelegate {
     
-    func getFilteredDrinks(filteredDrinks: [Drink], filterLabel: String) {
+    func didFetchFilteredDrinks(filteredDrinks: [Drink], filterLabel: String) {
         self.cocktailsCollectionView.showAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.drinks = filteredDrinks

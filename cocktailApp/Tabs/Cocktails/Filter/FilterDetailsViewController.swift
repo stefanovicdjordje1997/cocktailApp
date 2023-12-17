@@ -105,6 +105,7 @@ class FilterDetailsViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.navigationController?.popToRootViewController(animated: true)
                 }
+                
             case .failure(_):
                 self?.showAlert(title: "Oops", message: "Something went wrong 😕")
             }

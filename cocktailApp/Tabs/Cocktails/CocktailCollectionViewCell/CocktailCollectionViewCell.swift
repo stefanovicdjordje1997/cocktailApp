@@ -41,7 +41,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         drinkInstance.isFavorite = RealmManager.instance.getDrink(drink: drinkInstance)?.isFavorite
         
         //Set up cell values
-        drinkNameLabel.text = drink.strDrink
+        drinkNameLabel.text = drink.name
         drinkImageView.setImage(with: drink)
         //Set the corresponding button icon
         addToFavoritesButton.setImage(UIImage(named: drinkInstance.isFavorite == true ? "favoritesOn" : "favoritesOff"), for: .normal)
@@ -67,16 +67,18 @@ class CocktailCollectionViewCell: UICollectionViewCell {
             //Already a favorite, set isFavorite to false
             RealmManager.instance.setFavorite(with: drinkInstance, isFavorite: false)
         } else {
-            //Not a favorite, check if exists in Realm, if not add it
-            if !RealmManager.instance.contains(drink: drinkInstance) {
-                //Check if strAlcoholic is already set. This may happen when the drink is fetched from search
-                if drinkInstance.strAlcoholic == nil {
-                    //Doesn't have strAlcoholic, set it
-                    setDrinkCategory(drinkName: drinkInstance.strDrink)
-                }
-                //Add drink to Realm
-                RealmManager.instance.addDrink(favoriteDrink: RealmDrink(drink: drinkInstance))
+            //Not a favorite, check if strAlcoholic is already set. This may happen when the drink is fetched from search
+            if RealmManager.instance.getDrink(drink: drinkInstance)?.category == "" {
+                //Doesn't have strAlcoholic, set it
+                setDrinkCategory(drinkName: drinkInstance.name)
+                RealmManager.instance.setCategory(with: drinkInstance)
             }
+            
+            //Check if exists in Realm, if not add it
+            if !RealmManager.instance.contains(drink: drinkInstance) {
+                RealmManager.instance.addDrink(realmDrink: RealmDrink(drink: drinkInstance))
+            }
+            
             //Drink alredy exists in Realm, set isFavorite to true
             RealmManager.instance.setFavorite(with: drinkInstance, isFavorite: true)
         }
@@ -94,7 +96,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
             switch result {
                 
             case .success(let apiDrinks):
-                self?.drinkInstance.strAlcoholic = apiDrinks[0].strAlcoholic
+                self?.drinkInstance.category = apiDrinks[0].category
             case .failure(_):
                 break
             }

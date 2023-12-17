@@ -16,10 +16,15 @@ class SplashViewController: UIViewController {
         
         loadData()
         
-        //Show TabBarController after SplashScreen
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        showViewController(fromStoryboard: "Main", withIdentifier: "TabBarController")
         
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
+    }
+    
+    //MARK: - Functions
+    
+    func showViewController(fromStoryboard storyboardName: String, withIdentifier identifier: String) {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
         
         DispatchQueue.main.async {
             if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -28,8 +33,6 @@ class SplashViewController: UIViewController {
             }
         }
     }
-    
-    //MARK: - Functions
     
     func loadData() {
         //Load Non Alcoholic data

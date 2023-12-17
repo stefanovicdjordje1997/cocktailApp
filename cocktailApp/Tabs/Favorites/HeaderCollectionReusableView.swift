@@ -26,9 +26,5 @@ class HeaderCollectionReusableView: UICollectionReusableView {
         
         //Assigning the attributed string to the label
         headerLabel.attributedText = attributedString
-        
-        //Setting the border
-        headerLabel.layer.borderWidth = 0.5
-        headerLabel.layer.borderColor = UIColor.borderColor
     }
 }

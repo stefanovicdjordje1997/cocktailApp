@@ -15,7 +15,6 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var favoritesCollectionView: UICollectionView!
     
-    var favoriteDrinks: Results<RealmDrink>? = nil
     var drinkCategories: [(category: Category, drinks: [Drink])] = []
     
     // MARK: - Lifecycle
@@ -30,11 +29,8 @@ class FavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         populateDrinkCategories()
-        
         setupBackgroundView()
-        
         favoritesCollectionView.reloadData()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,21 +52,15 @@ class FavoritesViewController: UIViewController {
     }
     
     func populateDrinkCategories() {
-        favoriteDrinks = RealmManager.instance.getFavoriteDrinks()
+        let favoriteDrinks = RealmManager.instance.getFavoriteDrinks()
         drinkCategories = []
-        
-        guard let favoriteDrinks = favoriteDrinks else {
-            return
-        }
 
         for favoriteDrink in favoriteDrinks {
             //Create a Drink object from the FavoriteDrink
             let drink = Drink(favoriteDrink: favoriteDrink)
 
             //Determine the category based on strAlcoholic
-            guard let category = Category(rawValue: favoriteDrink.category ?? "") else {
-                continue
-            }
+            guard let category = Category(rawValue: favoriteDrink.category ?? "") else { continue }
 
             //Check if the category already exists in drinkCategories
             if let index = drinkCategories.firstIndex(where: { $0.category == category }) {
@@ -84,7 +74,7 @@ class FavoritesViewController: UIViewController {
     }
     
     func setupBackgroundView() {
-        if favoriteDrinks?.count == 0 {
+        if drinkCategories.isEmpty {
             let emptyView  = Bundle.main.loadNibNamed(CocktailsEmptyView.identifier, owner: self)?.first as? CocktailsEmptyView
             emptyView?.setupLabel(withMessage: "No favorite cocktails yet 🍸")
             self.favoritesCollectionView.backgroundView = emptyView

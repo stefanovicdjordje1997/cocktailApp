@@ -9,8 +9,8 @@ import Foundation
 
 enum Category: String {
     case alcoholic = "Alcoholic"
-    case nonAlcoholic = "Non Alcoholic"
-    case optionalAlcohol = "Optional Alcohol"
+    case nonAlcoholic = "Non alcoholic"
+    case optionalAlcohol = "Optional alcohol"
 }
 
 // MARK: - DrinkWrapper
@@ -22,27 +22,35 @@ struct DrinkWrapper: Decodable {
 // MARK: - Drink
 
 struct Drink: Decodable {
-    var strDrink: String
-    var strDrinkThumb: String?
-    var idDrink: String
+    var name: String
+    var image: String?
+    var id: String
     var isFavorite: Bool? = false
-    var strAlcoholic: Category.RawValue?
+    var category: Category.RawValue?
+    
+    enum CodingKeys: String, CodingKey {
+            case name = "strDrink"
+            case image = "strDrinkThumb"
+            case id = "idDrink"
+            case isFavorite
+            case category = "strAlcoholic"
+        }
     
     // MARK: - Drink constructors
-    
+    // TODO: - Make it work without this constructor, use guards instead in CocktailCollectionViewCell
     init(strDrink: String = "", strDrinkThumb: String? = nil, idDrink: String = "", isFavorite: Bool? = nil, strAlcoholic: Category? = nil) {
-        self.strDrink = strDrink
-        self.strDrinkThumb = strDrinkThumb
-        self.idDrink = idDrink
+        self.name = strDrink
+        self.image = strDrinkThumb
+        self.id = idDrink
         self.isFavorite = isFavorite
-        self.strAlcoholic = strAlcoholic?.rawValue
+        self.category = strAlcoholic?.rawValue
     }
     
     init(favoriteDrink: RealmDrink) {
-        self.strDrink = favoriteDrink.name
-        self.strDrinkThumb = favoriteDrink.image
-        self.idDrink = favoriteDrink.id
+        self.name = favoriteDrink.name
+        self.image = favoriteDrink.image
+        self.id = favoriteDrink.id
         self.isFavorite = true
-        self.strAlcoholic = favoriteDrink.category
+        self.category = favoriteDrink.category
     }
 }
