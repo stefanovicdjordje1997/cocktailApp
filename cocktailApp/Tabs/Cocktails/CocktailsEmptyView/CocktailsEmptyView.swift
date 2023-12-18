@@ -19,14 +19,13 @@ class CocktailsEmptyView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupLabel()
     }
     
     // MARK: - Set up
     
-    func setupLabel() {
-        warrningMessageLabel.text = "No cocktails found 😕"
-        warrningMessageLabel.textColor = .primaryDark
-        warrningMessageLabel.font = UIFont.customFontRegularExtraLarge
-    }
+    func setupLabel(withMessage message: String) {
+           warrningMessageLabel.text = message
+           warrningMessageLabel.textColor = .primaryDark
+           warrningMessageLabel.font = UIFont.customFontRegularExtraLarge
+       }
 }

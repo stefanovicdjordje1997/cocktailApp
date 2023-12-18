@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kr8-CQ-a1D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yyw-fN-TmW">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
@@ -11,7 +11,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Ly3-12-jyG">
             <objects>
-                <tabBarController id="kr8-CQ-a1D" customClass="TabBarController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="kr8-CQ-a1D" customClass="TabBarController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vlj-07-nzR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -204,14 +204,66 @@
         <!--Favorites-->
         <scene sceneID="xkY-9q-ebC">
             <objects>
-                <viewController id="giU-Z8-fl0" sceneMemberID="viewController">
+                <viewController id="giU-Z8-fl0" customClass="FavoritesViewController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Klv-aa-Hby">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPD-Rl-lbg">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wEF-PP-PSZ">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="0.0" id="JJ9-Y8-fAT">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FavoritesCollectionViewSectionHeader" id="7Ec-KV-N3d" customClass="HeaderCollectionReusableView" customModule="cocktailApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK6-zj-mTo">
+                                            <rect key="frame" x="8" y="0.0" width="377" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="dK6-zj-mTo" secondAttribute="trailing" constant="8" id="4m3-8c-k1W"/>
+                                        <constraint firstItem="dK6-zj-mTo" firstAttribute="leading" secondItem="7Ec-KV-N3d" secondAttribute="leading" constant="8" id="HLK-uy-l26"/>
+                                        <constraint firstItem="dK6-zj-mTo" firstAttribute="top" secondItem="7Ec-KV-N3d" secondAttribute="top" id="dMc-9c-n20"/>
+                                        <constraint firstAttribute="bottom" secondItem="dK6-zj-mTo" secondAttribute="bottom" id="mjr-mD-eIG"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="headerLabel" destination="dK6-zj-mTo" id="ZQT-dx-cjN"/>
+                                    </connections>
+                                </collectionReusableView>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aRx-bg-1VM"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="aRx-bg-1VM" firstAttribute="trailing" secondItem="oPD-Rl-lbg" secondAttribute="trailing" id="4hz-dI-nRs"/>
+                            <constraint firstItem="aRx-bg-1VM" firstAttribute="trailing" secondItem="wEF-PP-PSZ" secondAttribute="trailing" id="85J-ic-NNo"/>
+                            <constraint firstItem="wEF-PP-PSZ" firstAttribute="leading" secondItem="aRx-bg-1VM" secondAttribute="leading" id="W0z-E6-KG9"/>
+                            <constraint firstItem="oPD-Rl-lbg" firstAttribute="top" secondItem="aRx-bg-1VM" secondAttribute="top" id="d97-Nb-8KH"/>
+                            <constraint firstItem="oPD-Rl-lbg" firstAttribute="leading" secondItem="aRx-bg-1VM" secondAttribute="leading" id="et6-xl-T2u"/>
+                            <constraint firstItem="wEF-PP-PSZ" firstAttribute="top" secondItem="aRx-bg-1VM" secondAttribute="top" id="hjM-o9-DVF"/>
+                            <constraint firstItem="aRx-bg-1VM" firstAttribute="bottom" secondItem="wEF-PP-PSZ" secondAttribute="bottom" id="jFX-vN-sSA"/>
+                            <constraint firstItem="aRx-bg-1VM" firstAttribute="bottom" secondItem="oPD-Rl-lbg" secondAttribute="bottom" id="jIx-Wk-UA3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Favorites" id="5cn-AT-XXp"/>
+                    <connections>
+                        <outlet property="backgroundView" destination="oPD-Rl-lbg" id="WCl-AP-rci"/>
+                        <outlet property="favoritesCollectionView" destination="wEF-PP-PSZ" id="PIM-uz-KBW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yPD-T7-eIa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,10 +303,10 @@
             </objects>
             <point key="canvasLocation" x="-1437" y="722"/>
         </scene>
-        <!--View Controller-->
+        <!--Splash View Controller-->
         <scene sceneID="Jfu-ih-Wnb">
             <objects>
-                <viewController id="yyw-fN-TmW" sceneMemberID="viewController">
+                <viewController id="yyw-fN-TmW" customClass="SplashViewController" customModule="cocktailApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zsh-D7-ivB">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -285,7 +337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4CU-Z5-36F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-245" y="-11"/>
+            <point key="canvasLocation" x="-2250" y="-11"/>
         </scene>
     </scenes>
     <resources>
@@ -298,14 +350,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

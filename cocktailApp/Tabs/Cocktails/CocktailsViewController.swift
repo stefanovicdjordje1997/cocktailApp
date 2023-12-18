@@ -23,11 +23,13 @@ class CocktailsViewController: UIViewController {
     var searchBarButtonItem = UIBarButtonItem()
     var filterBarButtonItem = UIBarButtonItem()
     var drinks: [Drink] = []
+    var previousFavoriteDrinksCount = 0
     var drinksFromSearch: [Drink] = [] {
         didSet {
             DispatchQueue.main.async {
                 if self.search.searchBar.text?.isEmpty == false && self.drinksFromSearch.isEmpty {
-                    let emptyView  = Bundle.main.loadNibNamed(CocktailsEmptyView.identifier, owner: self)?.first as? UIView
+                    let emptyView  = Bundle.main.loadNibNamed(CocktailsEmptyView.identifier, owner: self)?.first as? CocktailsEmptyView
+                    emptyView?.setupLabel(withMessage: "No cocktails found 😕")
                     self.cocktailsCollectionView.backgroundView = emptyView
                 } else {
                     self.cocktailsCollectionView.backgroundView = nil
@@ -51,6 +53,7 @@ class CocktailsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         backgroundView.setMainGradient()
+        reloadDrinkData()
     }
     
     // MARK: - Set up
@@ -60,6 +63,7 @@ class CocktailsViewController: UIViewController {
         setupNavBarButtons()
         setupLoader()
         setupSearchController()
+        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
     
     func setupLabel() {
@@ -130,7 +134,11 @@ class CocktailsViewController: UIViewController {
     }
     
     func showDefaultDrinks() {
-        //Showing drinks loaded from api
+        drinks = []
+        for alcoholicDrink in RealmManager.instance.getAlcoholicDrinks() {
+            drinks.append(Drink(favoriteDrink: alcoholicDrink))
+        }
+        
         drinksFromSearch = []
         resultsLabel.text = "Alcoholic"
         cocktailsCollectionView.showAnimation()
@@ -138,6 +146,14 @@ class CocktailsViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.cocktailsCollectionView.reloadData()
         }
+    }
+    
+    func reloadDrinkData() {
+        //Reload data only if drink is removed from favorites on the favorites tab
+        if RealmManager.instance.getFavoriteDrinks().count < previousFavoriteDrinksCount {
+            cocktailsCollectionView.reloadData()
+        }
+        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
     
     // MARK: - Actions
@@ -150,7 +166,6 @@ class CocktailsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.navigationItem.searchController?.searchBar.becomeFirstResponder()
             }
-            
         } else {
             //Show default drinks only if the search bar isn't empty
             if search.searchBar.text?.isEmpty == false {
@@ -162,20 +177,25 @@ class CocktailsViewController: UIViewController {
     }
     
     @objc func openFilterMenu() {
-        let filterViewController = FilterViewController.instantiate()
-        filterViewController.filterDelegate = self
-        navigationController?.pushViewController(filterViewController, animated: true)
+        //Hide search bar when filter menu is open
+        self.navigationItem.searchController = nil
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let filterViewController = FilterViewController.instantiate()
+            filterViewController.filterDelegate = self
+            self.navigationController?.pushViewController(filterViewController, animated: true)
+        }
     }
     
     @objc func handleTap() {
         //Hide the keyboard by resigning the first responder status from the search bar
         search.searchBar.resignFirstResponder()
-        }
+    }
     
     // MARK: - Api
     
     func fetchingDrinkData() {
-        ApiManager.fetchDrinks { [weak self] result in
+        ApiManager.fetchDrinks(alcoholic: .alcoholic) { [weak self] result in
             switch result {
                 
             case .success(let apiDrinks):
@@ -188,6 +208,7 @@ class CocktailsViewController: UIViewController {
             case .failure(_):
                 self?.showAlert(title: "Oops", message: "Something went wrong 😕")
             }
+            
             DispatchQueue.main.async {
                 self?.loader.stopAnimating()
             }
@@ -226,6 +247,7 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
+        cell.cellDelegate = self
         cell.setupCell(with: search.searchBar.text?.isEmpty == false ? drinksFromSearch[indexPath.row] : drinks[indexPath.row])
         return cell
     }
@@ -240,13 +262,10 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
 
 extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelegate {
     
-    //Search when there are 3 characters or more
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //if searchText.count > 2 {
-            NSObject.cancelPreviousPerformRequests(withTarget: self)
-            perform(#selector(searchDrinks), with: searchText, afterDelay: 0.5)
-            resultsLabel.text = "Search: " + searchText
-        //}
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        perform(#selector(searchDrinks), with: searchText, afterDelay: 0.5)
+        resultsLabel.text = "Search: " + searchText
         
         if searchText.isEmpty {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
@@ -258,7 +277,8 @@ extension CocktailsViewController: UISearchControllerDelegate, UISearchBarDelega
 // MARK: - FilterDelegate
 
 extension CocktailsViewController: FilterDelegate {
-    func getFilteredDrinks(filteredDrinks: [Drink], filterLabel: String) {
+    
+    func didFetchFilteredDrinks(filteredDrinks: [Drink], filterLabel: String) {
         self.cocktailsCollectionView.showAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.drinks = filteredDrinks
@@ -266,5 +286,12 @@ extension CocktailsViewController: FilterDelegate {
             self.cocktailsCollectionView.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
             self.cocktailsCollectionView.reloadData()
         }
+    }
+}
+
+extension CocktailsViewController: CellDelegate {
+    
+    func didTap(cell: CocktailCollectionViewCell, drink: Drink?) {
+        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
 }

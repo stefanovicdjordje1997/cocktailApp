@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImageView {
     func setImage(with drink: Drink) {
-        if let url = URL(string: drink.strDrinkThumb ?? "") {
+        if let url = URL(string: drink.image ?? "") {
             kf.setImage(with: url)
         } else {
             image = UIImage(systemName: "photo")

@@ -24,8 +24,6 @@ class TabBarController: UITabBarController {
         //Set up the tabBar color
         let appearance = UITabBarAppearance()
         
-        
-        
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = .primaryDark
         appearance.stackedLayoutAppearance.normal.iconColor = .white.withAlphaComponent(0.5)
@@ -38,14 +36,14 @@ class TabBarController: UITabBarController {
         
         UIBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.customFontRegularLarge], for: .normal)
         
-        //Set uo the tabBar border
+        //Set up the tabBar border
         tabBar.layer.borderWidth = 0.5
         tabBar.layer.borderColor = UIColor.borderColor
         
         //Set up the tabBar icons
         tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.5)
         
-        // Customize the font for tabBar items
+        //Customize the font for tabBar items
             let customFontAttribute = [NSAttributedString.Key.font: UIFont.customFontRegularLarge]
             let customSelectedFontAttribute = [NSAttributedString.Key.font: UIFont.customFontBoldLarge]
 
