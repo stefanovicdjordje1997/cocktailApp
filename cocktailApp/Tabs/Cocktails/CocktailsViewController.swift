@@ -79,7 +79,7 @@ class CocktailsViewController: UIViewController {
         
         //Setting the border
         viewLabel.layer.borderWidth = 0.5
-        viewLabel.layer.borderColor = UIColor.borderColor
+        viewLabel.layer.borderColor = UIColor.borderColor.cgColor
     }
     
     func setupCollectionView() {

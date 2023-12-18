@@ -126,6 +126,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ly9-fR-g2U">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="Eag-lt-YRK" userLabel="MainStackView">
                                 <rect key="frame" x="40" y="123.00000000000003" width="313" height="450.66666666666674"/>
                                 <subviews>
@@ -180,6 +184,10 @@
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
                             <constraint firstItem="Eag-lt-YRK" firstAttribute="top" secondItem="nwL-if-adK" secondAttribute="top" constant="20" id="0mt-5q-bI4"/>
+                            <constraint firstItem="Ly9-fR-g2U" firstAttribute="leading" secondItem="nwL-if-adK" secondAttribute="leading" id="9kh-NA-fl7"/>
+                            <constraint firstItem="nwL-if-adK" firstAttribute="bottom" secondItem="Ly9-fR-g2U" secondAttribute="bottom" id="XtM-X6-mCa"/>
+                            <constraint firstItem="Ly9-fR-g2U" firstAttribute="top" secondItem="nwL-if-adK" secondAttribute="top" id="a8E-sm-1w1"/>
+                            <constraint firstItem="nwL-if-adK" firstAttribute="trailing" secondItem="Ly9-fR-g2U" secondAttribute="trailing" id="cTU-hH-QAo"/>
                             <constraint firstItem="nwL-if-adK" firstAttribute="trailing" secondItem="Eag-lt-YRK" secondAttribute="trailing" constant="40" id="e4y-jV-2Yy"/>
                             <constraint firstItem="Eag-lt-YRK" firstAttribute="centerX" secondItem="PB9-dP-pcy" secondAttribute="centerX" id="hFV-6B-5lM"/>
                             <constraint firstItem="Eag-lt-YRK" firstAttribute="leading" secondItem="nwL-if-adK" secondAttribute="leading" constant="40" id="otU-Lc-47c"/>
@@ -189,6 +197,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="j6d-gm-lp6"/>
                     <connections>
+                        <outlet property="backgroundView" destination="Ly9-fR-g2U" id="mSO-9H-Pg4"/>
                         <outlet property="emailLabel" destination="I1H-RU-Nrc" id="mNr-fT-5iq"/>
                         <outlet property="emailTextField" destination="hTu-ja-zoq" id="aL0-IM-Kj0"/>
                         <outlet property="logoutButton" destination="pUI-pm-c5a" id="anI-DC-PeG"/>

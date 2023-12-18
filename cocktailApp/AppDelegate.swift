@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UILabel.appearance().font = UIFont.customFontRegularLarge
         UITextField.appearance().font = UIFont.customFontRegularLarge
         UITextView.appearance().font = UIFont.customFontRegularLarge
-        UIButton.appearance().titleLabel?.font = UIFont.customFontRegularLarge
+        UIButton.appearance().titleLabel?.font = UIFont.customFontRegularNormal
     }
 }
 

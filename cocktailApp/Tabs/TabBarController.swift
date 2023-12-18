@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
         
         //Set up the tabBar border
         tabBar.layer.borderWidth = 0.5
-        tabBar.layer.borderColor = UIColor.borderColor
+        tabBar.layer.borderColor = UIColor.borderColor.cgColor
         
         //Set up the tabBar icons
         tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.5)

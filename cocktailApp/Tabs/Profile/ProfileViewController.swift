@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Properties
     
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -29,6 +30,12 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         prepareForm()
         configureTapGesture()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        //Settig up the background color
+        backgroundView.setMainGradient()
     }
     
     func prepareForm() {
