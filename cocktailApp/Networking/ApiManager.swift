@@ -174,7 +174,7 @@ class ApiManager {
         for i in 0..<drinks.count {
             //Set the category property
             if drinks[i].category == nil && alcoholic != nil {
-                drinks[i].category = alcoholic?.rawValue
+                drinks[i].category = alcoholic
             }
             //Set the favorite property
             if realm.objects(RealmDrink.self).filter("id == %@", drinks[i].id as Any).first?.isFavorite == true {

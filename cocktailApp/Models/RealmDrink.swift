@@ -13,7 +13,7 @@ class RealmDrink: Object {
     @Persisted var name: String
     @Persisted var image: String?
     @Persisted var id: String
-    @Persisted var category: Category.RawValue?
+    @Persisted var category: String
     @Persisted var isFavorite: Bool
     
     //MARK: - Constructor
@@ -23,7 +23,7 @@ class RealmDrink: Object {
         self.name = drink.name 
         self.image = drink.image ?? ""
         self.id = drink.id 
-        self.category = drink.category ?? ""
+        self.category = drink.category?.rawValue ?? ""
         self.isFavorite = drink.isFavorite ?? false
     }
 }

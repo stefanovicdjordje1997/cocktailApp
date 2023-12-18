@@ -129,7 +129,7 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
 
 extension FavoritesViewController: CellDelegate {
     
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink) {
+    func didTap(cell: CocktailCollectionViewCell, drink: Drink?) {
          
         if let indexPath = favoritesCollectionView.indexPath(for: cell) {
             let section = indexPath.section

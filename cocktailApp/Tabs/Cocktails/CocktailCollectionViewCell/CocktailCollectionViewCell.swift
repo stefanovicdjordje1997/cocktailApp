@@ -10,7 +10,7 @@ import Kingfisher
 import RealmSwift
 
 protocol CellDelegate {
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink)
+    func didTap(cell: CocktailCollectionViewCell, drink: Drink?)
 }
 
 class CocktailCollectionViewCell: UICollectionViewCell {
@@ -24,7 +24,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var drinkNameLabel: UILabel!
     @IBOutlet weak var addToFavoritesButton: UIButton!
 
-    private var drinkInstance = Drink()
+    private var drinkInstance: Drink?
     
     // MARK: - Lifecycle
     
@@ -37,14 +37,16 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     func setupCell(with drink: Drink) {
         drinkInstance = drink
         
+        guard var tempDrink = drinkInstance else { return }
+        
         //Set the isFavorite property
-        drinkInstance.isFavorite = RealmManager.instance.getDrink(drink: drinkInstance)?.isFavorite
+        tempDrink.isFavorite = RealmManager.instance.getDrink(drink: tempDrink)?.isFavorite
         
         //Set up cell values
         drinkNameLabel.text = drink.name
         drinkImageView.setImage(with: drink)
         //Set the corresponding button icon
-        addToFavoritesButton.setImage(UIImage(named: drinkInstance.isFavorite == true ? "favoritesOn" : "favoritesOff"), for: .normal)
+        addToFavoritesButton.setImage(UIImage(named: tempDrink.isFavorite == true ? "favoritesOn" : "favoritesOff"), for: .normal)
         
         //Setting layer
         layer.cornerRadius = 4
@@ -55,53 +57,36 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = false
     }
     
+    private func updateDrinkRealm(_ drink: Drink?) {
+        guard var drink = drink else { return }
+        
+        if drink.isFavorite != true {
+            //Drink is no more a favorite one, set isFavorite to false
+            RealmManager.instance.setFavorite(with: drink, isFavorite: false)
+        } else {
+            //Drink is now favorite, check if it has categoty, if not set it to other
+            if RealmManager.instance.getDrink(drink: drink)?.category == "" {
+                drink.category = .other
+                RealmManager.instance.setCategory(with: drink)
+            }
+            //Set isFavorite to true
+            RealmManager.instance.setFavorite(with: drink, isFavorite: true)
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func addToFavorites(_ sender: Any) {
+        //Change the state of isFavorite property
+        drinkInstance?.isFavorite?.toggle()
+        
+        //Set isFavorite and category of the drink in realm
+        updateDrinkRealm(drinkInstance)
+        
         //Set up the button image
-        let isFavorite = drinkInstance.isFavorite ?? false
-        let buttonImageName = isFavorite ? "favoritesOff" : "favoritesOn"
+        let buttonImageName = drinkInstance?.isFavorite == true ? "favoritesOn" : "favoritesOff"
         addToFavoritesButton.setImage(UIImage(named: buttonImageName), for: .normal)
         
-        if isFavorite {
-            //Already a favorite, set isFavorite to false
-            RealmManager.instance.setFavorite(with: drinkInstance, isFavorite: false)
-        } else {
-            //Not a favorite, check if strAlcoholic is already set. This may happen when the drink is fetched from search
-            if RealmManager.instance.getDrink(drink: drinkInstance)?.category == "" {
-                //Doesn't have strAlcoholic, set it
-                setDrinkCategory(drinkName: drinkInstance.name)
-                RealmManager.instance.setCategory(with: drinkInstance)
-            }
-            
-            //Check if exists in Realm, if not add it
-            if !RealmManager.instance.contains(drink: drinkInstance) {
-                RealmManager.instance.addDrink(realmDrink: RealmDrink(drink: drinkInstance))
-            }
-            
-            //Drink alredy exists in Realm, set isFavorite to true
-            RealmManager.instance.setFavorite(with: drinkInstance, isFavorite: true)
-        }
-        //Change the state of button when it's clicked
-        drinkInstance.isFavorite?.toggle()
         cellDelegate?.didTap(cell: self, drink: drinkInstance)
-    }
-    
-    // MARK: - Api
-    
-    //This function will fetch drink from API with category type and set it's strAlcoholic property
-    func setDrinkCategory(drinkName: String) {
-        let semaphore = DispatchSemaphore(value: 0)
-        ApiManager.searchDrinks(input: drinkName) { [weak self] result in
-            switch result {
-                
-            case .success(let apiDrinks):
-                self?.drinkInstance.category = apiDrinks[0].category
-            case .failure(_):
-                break
-            }
-            semaphore.signal()
-        }
-        semaphore.wait()
     }
 }

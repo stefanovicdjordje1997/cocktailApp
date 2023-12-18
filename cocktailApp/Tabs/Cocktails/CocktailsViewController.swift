@@ -291,7 +291,7 @@ extension CocktailsViewController: FilterDelegate {
 
 extension CocktailsViewController: CellDelegate {
     
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink) {
+    func didTap(cell: CocktailCollectionViewCell, drink: Drink?) {
         previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
 }

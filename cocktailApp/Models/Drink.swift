@@ -7,10 +7,11 @@
 
 import Foundation
 
-enum Category: String {
+enum Category: String, Decodable {
     case alcoholic = "Alcoholic"
     case nonAlcoholic = "Non alcoholic"
     case optionalAlcohol = "Optional alcohol"
+    case other = "Other"
 }
 
 // MARK: - DrinkWrapper
@@ -26,24 +27,14 @@ struct Drink: Decodable {
     var image: String?
     var id: String
     var isFavorite: Bool? = false
-    var category: Category.RawValue?
+    var category: Category?
     
     enum CodingKeys: String, CodingKey {
-            case name = "strDrink"
-            case image = "strDrinkThumb"
-            case id = "idDrink"
-            case isFavorite
-            case category = "strAlcoholic"
-        }
-    
-    // MARK: - Drink constructors
-    // TODO: - Make it work without this constructor, use guards instead in CocktailCollectionViewCell
-    init(strDrink: String = "", strDrinkThumb: String? = nil, idDrink: String = "", isFavorite: Bool? = nil, strAlcoholic: Category? = nil) {
-        self.name = strDrink
-        self.image = strDrinkThumb
-        self.id = idDrink
-        self.isFavorite = isFavorite
-        self.category = strAlcoholic?.rawValue
+        case name = "strDrink"
+        case image = "strDrinkThumb"
+        case id = "idDrink"
+        case isFavorite
+        case category = "strAlcoholic"
     }
     
     init(favoriteDrink: RealmDrink) {
@@ -51,6 +42,6 @@ struct Drink: Decodable {
         self.image = favoriteDrink.image
         self.id = favoriteDrink.id
         self.isFavorite = true
-        self.category = favoriteDrink.category
+        self.category = Category(rawValue: favoriteDrink.category ?? "")
     }
 }

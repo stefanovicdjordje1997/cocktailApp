@@ -56,13 +56,13 @@ class RealmManager {
     
     func setFavorite(with drink: Drink, isFavorite: Bool) {
         try! realm.write {
-            getDrinks().filter("id == %@", drink.id as Any).first?.isFavorite = isFavorite
+            getDrink(drink: drink)?.isFavorite = isFavorite
         }
     }
     
     func setCategory(with drink: Drink) {
         try! realm.write {
-            getDrinks().filter("id == %@", drink.id as Any).first?.category = drink.category
+            getDrink(drink: drink)?.category = drink.category?.rawValue ?? ""
         }
     }
 }
