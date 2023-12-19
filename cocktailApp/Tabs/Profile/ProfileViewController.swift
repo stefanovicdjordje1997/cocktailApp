@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
         setupPasswordTextField()
 
         //Setting up logout button
-        setupLogoutButton()
+        logoutButton.setupButton(title: ButtonTitle.logout, backgroundColor: UIColor.brownLight.withAlphaComponent(0.5), tintColor: .white)
     }
     
     // MARK: - Set up
@@ -67,8 +67,8 @@ class ProfileViewController: UIViewController {
     }
     
     func setupLabels() {
-        emailLabel.text = "Email"
-        passwordLabel.text = "Password"
+        emailLabel.text = LabelTitle.email
+        passwordLabel.text = LabelTitle.password
     }
     
     func setupEmailTextField() {
@@ -92,13 +92,6 @@ class ProfileViewController: UIViewController {
         passwordTextField.rightView = passwordEditButton
     }
     
-    func setupLogoutButton() {
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.backgroundColor = UIColor.brown.withAlphaComponent(0.5)
-        logoutButton.tintColor = UIColor.white
-        logoutButton.titleLabel?.font = UIFont.customFontRegularNormal
-    }
-    
     func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
@@ -117,18 +110,16 @@ class ProfileViewController: UIViewController {
             isPasswordEnabled = true
             passwordTextField.isSecureTextEntry = false
             passwordTextField.becomeFirstResponder()
-            print("Password editing enabled.")
         } else {
             passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
             passwordTextField.resignFirstResponder()
             isPasswordEnabled = false
             passwordTextField.isSecureTextEntry = true
-            print("Password editing disabled.")
         }
     }
     
     @IBAction func logout(_ sender: Any) {
-        print("Email: \(emailTextField.text ?? "Email field is empty")\nPassword: \(passwordTextField.text ?? "Password field is empty")")
+        navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
     }
 }
 

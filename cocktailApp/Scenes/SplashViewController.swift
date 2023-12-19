@@ -16,22 +16,10 @@ class SplashViewController: UIViewController {
         
         loadData()
         
-        showViewController(fromStoryboard: "Authentication", withIdentifier: "LoginViewController")
+        navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
     }
     
-    //MARK: - Functions
-    
-//    static func showViewController(fromStoryboard storyboardName: String, withIdentifier identifier: String) {
-//        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
-//        
-//        DispatchQueue.main.async {
-//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//               let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
-//                window.rootViewController = viewController
-//            }
-//        }
-//    }
+    // MARK: - Functions
     
     func loadData() {
         //Load Non Alcoholic data

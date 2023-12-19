@@ -11,8 +11,6 @@ class CocktailsEmptyView: UIView {
     
     // MARK: - Properties
     
-    static let identifier = "CocktailsEmptyView"
-    
     @IBOutlet weak var warrningMessageLabel: UILabel!
     
     // MARK: - Lifecycle

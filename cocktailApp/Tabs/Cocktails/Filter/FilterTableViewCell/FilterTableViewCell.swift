@@ -9,8 +9,6 @@ import UIKit
 
 class FilterTableViewCell: UITableViewCell {
     
-    static let identifier = "FilterTableViewCell"
-    
     @IBOutlet weak var categoryTitleLabel: UILabel!
     
     override func awakeFromNib() {

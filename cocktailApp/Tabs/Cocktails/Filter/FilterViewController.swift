@@ -21,10 +21,9 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var filterTableView: UITableView!
     
     let filters = ["Alcoholic or not", "Category", "Glass", "Ingredient"]
-    class var identifier: String  { "FilterViewController" }
     
     class func instantiate() -> FilterViewController {
-        let storyboard = UIStoryboard(name: "Filter", bundle: nil)
+        let storyboard = UIStoryboard(name: UIStoryboard.filter, bundle: nil)
         let filterViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! FilterViewController
         filterViewController.title = "Filter"
         

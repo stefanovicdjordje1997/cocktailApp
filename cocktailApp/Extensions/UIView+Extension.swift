@@ -9,6 +9,10 @@ import UIKit
 
 extension UIView {
     
+    static var identifier: String {
+            return String(describing: self)
+        }
+    
     func setMainGradient() {
         let gradientLayer = getMainGradient()
         gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)

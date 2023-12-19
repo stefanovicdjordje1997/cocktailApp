@@ -56,19 +56,19 @@ class TabBarController: UITabBarController {
         
         if let item1 = tabBar.items?[0] {
             item1.image = UIImage(systemName: "wineglass")
-            item1.title = "Cocktails"
+            item1.title = TabBarItemText.cocktails
             item1.selectedImage = UIImage(systemName: "wineglass.fill")
         }
         
         if let item2 = tabBar.items?[1] {
             item2.image = UIImage(systemName: "heart")
-            item2.title = "Favorites"
+            item2.title = TabBarItemText.favorites
             item2.selectedImage = UIImage(systemName: "heart.fill")
         }
         
         if let item3 = tabBar.items?[2] {
             item3.image = UIImage(systemName: "person")
-            item3.title = "Profile"
+            item3.title = TabBarItemText.profile
             item3.selectedImage = UIImage(systemName: "person.fill")
         }
     }

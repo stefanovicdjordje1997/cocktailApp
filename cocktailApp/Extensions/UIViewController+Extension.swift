@@ -8,6 +8,11 @@
 import UIKit
 
 extension UIViewController {
+    
+    static var identifier: String {
+            return String(describing: self)
+        }
+    
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
@@ -16,7 +21,7 @@ extension UIViewController {
         }
     }
     
-    func showViewController(fromStoryboard storyboardName: String, withIdentifier identifier: String) {
+    func navigateToViewController(fromStoryboard storyboardName: String, withIdentifier identifier: String) {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
         

@@ -21,10 +21,10 @@ class FilterDetailsViewController: UIViewController {
     @IBOutlet weak var filterTableView: UITableView!
     
     var categoryType = ""
-    class var identifier: String { "FilterDetailsViewController" }
+    
     
     class func instantiate(navBatTitle: String, categoryType: String) -> FilterDetailsViewController {
-        let storyboard = UIStoryboard(name: "Filter", bundle: nil)
+        let storyboard = UIStoryboard(name: UIStoryboard.filter, bundle: nil)
         let filterDetailsViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! FilterDetailsViewController
         filterDetailsViewController.title = navBatTitle
         filterDetailsViewController.fetchCategoriesData(category: categoryType)
@@ -91,7 +91,7 @@ class FilterDetailsViewController: UIViewController {
                 }
                 
             case .failure(_):
-                self?.showAlert(title: "Oops", message: "Something went wrong 😕")
+                self?.showAlert(title: AlertTitle.unexpected, message: "Something went wrong 😕")
             }
         }
     }
@@ -107,7 +107,7 @@ class FilterDetailsViewController: UIViewController {
                 }
                 
             case .failure(_):
-                self?.showAlert(title: "Oops", message: "Something went wrong 😕")
+                self?.showAlert(title: AlertTitle.unexpected, message: "Something went wrong 😕")
             }
         }
     }

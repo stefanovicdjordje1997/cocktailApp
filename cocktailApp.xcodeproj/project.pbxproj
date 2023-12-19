@@ -30,6 +30,9 @@
 		D48B3F792B231BCF0043D81F /* FilterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B3F782B231BCF0043D81F /* FilterDetailsViewController.swift */; };
 		D48B3F7B2B2334990043D81F /* DrinkCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B3F7A2B2334990043D81F /* DrinkCategory.swift */; };
 		D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */; };
+		D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */; };
+		D48DC9E02B31A6380037D287 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */; };
+		D48DC9E22B31AA690037D287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9E12B31AA690037D287 /* Constants.swift */; };
 		D492EB172B2F857900B670CD /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D492EB162B2F857900B670CD /* Authentication.storyboard */; };
 		D492EB1A2B2F85FB00B670CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492EB192B2F85FB00B670CD /* LoginViewController.swift */; };
 		D49BEDC72B1E0A5900A7FD9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDC62B1E0A5900A7FD9A /* Kingfisher */; };
@@ -77,6 +80,9 @@
 		D48B3F782B231BCF0043D81F /* FilterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailsViewController.swift; sourceTree = "<group>"; };
 		D48B3F7A2B2334990043D81F /* DrinkCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCategory.swift; sourceTree = "<group>"; };
 		D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9E12B31AA690037D287 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D492EB162B2F857900B670CD /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		D492EB192B2F85FB00B670CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -184,6 +190,7 @@
 				D4B390372B2897F50003EC50 /* Database */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
+				D48DC9E32B31B0F60037D287 /* Constants */,
 				D40DE1892B21C6EA00387ABE /* Font */,
 				D49FF0112B2DB76100D4BEE8 /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
@@ -224,6 +231,14 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		D48DC9E32B31B0F60037D287 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D48DC9E12B31AA690037D287 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		D492EB182B2F85D500B670CD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +257,8 @@
 				D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */,
 				D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */,
 				D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */,
+				D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */,
+				D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -395,9 +412,12 @@
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
 				D40DE19A2B220F8C00387ABE /* FilterViewController.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
+				D48DC9E22B31AA690037D287 /* Constants.swift in Sources */,
 				D4B390322B279AE80003EC50 /* FavoritesViewController.swift in Sources */,
 				D40DE18D2B21C9F700387ABE /* UIFont+CustomFont.swift in Sources */,
 				D4D3E4C72B2B294000A5DF9D /* HeaderCollectionReusableView.swift in Sources */,
+				D48DC9E02B31A6380037D287 /* UIButton+Extension.swift in Sources */,
+				D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */,
 				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,

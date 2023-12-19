@@ -31,44 +31,30 @@ class RegisterViewController: UIViewController {
     
     func prepareForm() {
         setupLabel()
-        setupLoginButton()
-        setupRegisterButton()
+        loginButton.setupButton(title: ButtonTitle.login, backgroundColor: .brownLight.withAlphaComponent(0.5), tintColor: .white)
+        registerButton.setupButton(title: ButtonTitle.register, backgroundColor: .white, tintColor: .brownDark)
         setupNameTextField()
         setupEmailTextField()
         setupPasswordTextField()
     }
     
-    func setupLoginButton() {
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.backgroundColor = .brownLight.withAlphaComponent(0.5)
-        loginButton.tintColor = .white
-        loginButton.titleLabel?.font = UIFont.customFontRegularNormal
-    }
-    
-    func setupRegisterButton() {
-        registerButton.setTitle("Register", for: .normal)
-        registerButton.backgroundColor = .white
-        registerButton.tintColor = .brownDark
-        registerButton.titleLabel?.font = UIFont.customFontRegularNormal
-    }
-    
     func setupLabel() {
-        headerLabel.text = "RegiStar"
+        headerLabel.text = LabelTitle.register
         headerLabel.font = .customFontRegularExtraLarge
     }
     
     func setupNameTextField() {
-        nameTextField.placeholder = "name"
+        nameTextField.placeholder = TextFieldPlaceholder.name
         nameTextField.delegate = self
     }
     
     func setupEmailTextField() {
-        emailTextField.placeholder = "email"
+        emailTextField.placeholder = TextFieldPlaceholder.email
         emailTextField.delegate = self
     }
     
     func setupPasswordTextField() {
-        passwordTextField.placeholder = "password"
+        passwordTextField.placeholder = TextFieldPlaceholder.password
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
     }
@@ -78,29 +64,29 @@ class RegisterViewController: UIViewController {
         
         //Validate name
         if let name = nameTextField.text, name.isEmpty {
-            errors.append("✍🏼Name")
+            errors.append(AlertMessage.name)
         }
 
         //Validate email
         if let email = emailTextField.text, email.isEmpty {
-            errors.append("📧Email")
+            errors.append(AlertMessage.email)
         }
 
         //Validate password
         if let password = passwordTextField.text, password.isEmpty {
-            errors.append("🔐Password")
+            errors.append(AlertMessage.password)
         }
 
         //Handle multiple errors
         switch errors.count {
         case 1:
-            showAlert(title: "Warning", message: "\(errors[0]) is required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0]) is required.")
             return false
         case 2:
-            showAlert(title: "Warning", message: "\(errors[0...1].joined(separator: " and ")) are required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: " and ")) are required.")
             return false
         case 3:
-            showAlert(title: "Warning", message: "\(errors[0...1].joined(separator: ", ")) and \(errors[2]) are required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: ", ")) and \(errors[2]) are required.")
             return false
         default:
             return true
@@ -116,7 +102,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         if isValid() {
-            showViewController(fromStoryboard: "Main", withIdentifier: "TabBarController")
+            navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
         }
     }
     
