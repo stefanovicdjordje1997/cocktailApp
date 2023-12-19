@@ -15,20 +15,20 @@ extension UIView {
     
     func setMainGradient() {
         let gradientLayer = getGradient(startColor: .primaryDark, endColor: .primaryLight)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
     }
     
     func setGreenGradient() {
         let gradientLayer = getGradient(startColor: .greenDark, endColor: .greenLight)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
     }
     
     func setBrownGradient() {
         let gradientLayer = getGradient(startColor: .brownDark, endColor: .brownLight)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
     }
 
     private func getGradient(startColor: UIColor, endColor: UIColor) -> CAGradientLayer {
