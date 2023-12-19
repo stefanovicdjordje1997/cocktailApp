@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backgroundView.setGreenGradient()
+        view.setGreenGradient()
         prepareForm()
         configureTapGesture()
     }
@@ -91,13 +91,15 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func login(_ sender: Any) {
-        if isValid() {
-            navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
+        guard isValid() else {
+            return
         }
+        
+        navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
     }
     
     @IBAction func register(_ sender: Any) {
-        let registerViewController = UIStoryboard(name: UIStoryboard.authentication, bundle: nil).instantiateViewController(identifier: RegisterViewController.identifier)
+        let registerViewController = UIStoryboard.authentication.instantiateViewController(identifier: RegisterViewController.identifier)
         present(registerViewController, animated: true)
     }
     

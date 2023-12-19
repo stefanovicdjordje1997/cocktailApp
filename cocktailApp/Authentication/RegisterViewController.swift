@@ -101,9 +101,11 @@ class RegisterViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func register(_ sender: Any) {
-        if isValid() {
-            navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
+        guard isValid() else {
+            return
         }
+        
+        navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
     }
     
     @IBAction func login(_ sender: Any) {

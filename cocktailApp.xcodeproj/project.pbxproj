@@ -190,7 +190,7 @@
 				D4B390372B2897F50003EC50 /* Database */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
-				D48DC9E32B31B0F60037D287 /* Constants */,
+				D48DC9E32B31B0F60037D287 /* Common */,
 				D40DE1892B21C6EA00387ABE /* Font */,
 				D49FF0112B2DB76100D4BEE8 /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
@@ -231,12 +231,12 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
-		D48DC9E32B31B0F60037D287 /* Constants */ = {
+		D48DC9E32B31B0F60037D287 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				D48DC9E12B31AA690037D287 /* Constants.swift */,
 			);
-			path = Constants;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		D492EB182B2F85D500B670CD /* Authentication */ = {

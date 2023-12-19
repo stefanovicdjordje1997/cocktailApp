@@ -206,7 +206,7 @@ class CocktailsViewController: UIViewController {
                 }
                 
             case .failure(_):
-                self?.showAlert(title: AlertTitle.unexpected, message: "Something went wrong 😕")
+                self?.showAlert(title: AlertTitle.unexpected, message: AlertMessage.unknown)
             }
             
             DispatchQueue.main.async {

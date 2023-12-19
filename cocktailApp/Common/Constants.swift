@@ -1,5 +1,5 @@
 //
-//  Values.swift
+//  Constants.swift
 //  cocktailApp
 //
 //  Created by Djordje Stefanovic on 12/19/23.
@@ -23,7 +23,7 @@ struct ButtonTitle {
     static let logout = "Logout"
 }
 
-// MARK: - Lebel title text
+// MARK: - Label title text
 
 struct LabelTitle {
     static let email = "Email"

@@ -23,8 +23,7 @@ class FilterViewController: UIViewController {
     let filters = ["Alcoholic or not", "Category", "Glass", "Ingredient"]
     
     class func instantiate() -> FilterViewController {
-        let storyboard = UIStoryboard(name: UIStoryboard.filter, bundle: nil)
-        let filterViewController = storyboard.instantiateViewController(withIdentifier: identifier) as! FilterViewController
+        let filterViewController = UIStoryboard.filter.instantiateViewController(withIdentifier: identifier) as! FilterViewController
         filterViewController.title = "Filter"
         
         return filterViewController

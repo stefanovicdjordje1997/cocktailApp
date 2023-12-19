@@ -21,8 +21,8 @@ extension UIViewController {
         }
     }
     
-    func navigateToViewController(fromStoryboard storyboardName: String, withIdentifier identifier: String) {
-        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+    func navigateToViewController(fromStoryboard storyboard: UIStoryboard, withIdentifier identifier: String) {
+        //let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: identifier)
         
         DispatchQueue.main.async {
