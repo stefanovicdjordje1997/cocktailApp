@@ -79,7 +79,7 @@ class CocktailsViewController: UIViewController {
         
         //Setting the border
         viewLabel.layer.borderWidth = 0.5
-        viewLabel.layer.borderColor = UIColor.borderColor
+        viewLabel.layer.borderColor = UIColor.borderColor.cgColor
     }
     
     func setupCollectionView() {
@@ -206,7 +206,7 @@ class CocktailsViewController: UIViewController {
                 }
                 
             case .failure(_):
-                self?.showAlert(title: "Oops", message: "Something went wrong 😕")
+                self?.showAlert(title: AlertTitle.unexpected, message: AlertMessage.unknown)
             }
             
             DispatchQueue.main.async {

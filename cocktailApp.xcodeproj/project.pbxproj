@@ -22,6 +22,7 @@
 		D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */; };
 		D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */; };
 		D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */; };
+		D42B9C762B309403000AF292 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42B9C752B309403000AF292 /* RegisterViewController.swift */; };
 		D4530CFF2B208505004135B0 /* CocktailsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */; };
 		D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4530D002B208737004135B0 /* CocktailsEmptyView.xib */; };
 		D4563E362B162D06004855B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4563E352B162D06004855B6 /* TabBarController.swift */; };
@@ -29,6 +30,11 @@
 		D48B3F792B231BCF0043D81F /* FilterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B3F782B231BCF0043D81F /* FilterDetailsViewController.swift */; };
 		D48B3F7B2B2334990043D81F /* DrinkCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B3F7A2B2334990043D81F /* DrinkCategory.swift */; };
 		D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */; };
+		D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */; };
+		D48DC9E02B31A6380037D287 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */; };
+		D48DC9E22B31AA690037D287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9E12B31AA690037D287 /* Constants.swift */; };
+		D492EB172B2F857900B670CD /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D492EB162B2F857900B670CD /* Authentication.storyboard */; };
+		D492EB1A2B2F85FB00B670CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492EB192B2F85FB00B670CD /* LoginViewController.swift */; };
 		D49BEDC72B1E0A5900A7FD9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDC62B1E0A5900A7FD9A /* Kingfisher */; };
 		D49BEDC92B1E0C4900A7FD9A /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */; };
 		D49BEDCC2B1E134B00A7FD9A /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDCB2B1E134B00A7FD9A /* NVActivityIndicatorView */; };
@@ -66,6 +72,7 @@
 		D42B27C72B18E4C500E65B39 /* CocktailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsViewController.swift; sourceTree = "<group>"; };
 		D42B27C92B18F3E800E65B39 /* CocktailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42B27CA2B18F3E800E65B39 /* CocktailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailCollectionViewCell.xib; sourceTree = "<group>"; };
+		D42B9C752B309403000AF292 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D4530CFE2B208505004135B0 /* CocktailsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocktailsEmptyView.swift; sourceTree = "<group>"; };
 		D4530D002B208737004135B0 /* CocktailsEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CocktailsEmptyView.xib; sourceTree = "<group>"; };
 		D4563E352B162D06004855B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -73,6 +80,11 @@
 		D48B3F782B231BCF0043D81F /* FilterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailsViewController.swift; sourceTree = "<group>"; };
 		D48B3F7A2B2334990043D81F /* DrinkCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCategory.swift; sourceTree = "<group>"; };
 		D48B83462B1E66F600C60BE7 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		D48DC9E12B31AA690037D287 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D492EB162B2F857900B670CD /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
+		D492EB192B2F85FB00B670CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		D49BEDCF2B1E244800A7FD9A /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		D49FF0112B2DB76100D4BEE8 /* Splash screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Splash screen.storyboard"; sourceTree = "<group>"; };
@@ -170,6 +182,7 @@
 			children = (
 				D42959152B14AE4B0015092E /* AppDelegate.swift */,
 				D42959172B14AE4B0015092E /* SceneDelegate.swift */,
+				D492EB182B2F85D500B670CD /* Authentication */,
 				D4B2DF372B1DE437004D4206 /* Scenes */,
 				D42B27D02B18FABF00E65B39 /* Tabs */,
 				D4B2DF362B1DE3E8004D4206 /* Models */,
@@ -177,6 +190,7 @@
 				D4B390372B2897F50003EC50 /* Database */,
 				D42B27CE2B18FA6B00E65B39 /* Storyboards */,
 				D4B2DF322B1DDE6B004D4206 /* Extensions */,
+				D48DC9E32B31B0F60037D287 /* Common */,
 				D40DE1892B21C6EA00387ABE /* Font */,
 				D49FF0112B2DB76100D4BEE8 /* Splash screen.storyboard */,
 				D429591E2B14AE4D0015092E /* Assets.xcassets */,
@@ -201,6 +215,7 @@
 			children = (
 				D429591B2B14AE4B0015092E /* Main.storyboard */,
 				D40DE1922B22086D00387ABE /* Filter.storyboard */,
+				D492EB162B2F857900B670CD /* Authentication.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -216,6 +231,23 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		D48DC9E32B31B0F60037D287 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D48DC9E12B31AA690037D287 /* Constants.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D492EB182B2F85D500B670CD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D492EB192B2F85FB00B670CD /* LoginViewController.swift */,
+				D42B9C752B309403000AF292 /* RegisterViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		D4B2DF322B1DDE6B004D4206 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +257,8 @@
 				D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */,
 				D40DE18C2B21C9F700387ABE /* UIFont+CustomFont.swift */,
 				D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */,
+				D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */,
+				D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -355,6 +389,7 @@
 				D40DE19E2B2211A200387ABE /* FilterTableViewCell.xib in Resources */,
 				D40DE18F2B21CA2800387ABE /* Caveat-Bold.ttf in Resources */,
 				D40DE18B2B21C73600387ABE /* Caveat-Regular.ttf in Resources */,
+				D492EB172B2F857900B670CD /* Authentication.storyboard in Resources */,
 				D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */,
 				D42B27CC2B18F3E800E65B39 /* CocktailCollectionViewCell.xib in Resources */,
 				D40DE1932B22086D00387ABE /* Filter.storyboard in Resources */,
@@ -370,15 +405,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42B9C762B309403000AF292 /* RegisterViewController.swift in Sources */,
 				D4ABD9CD2B222F07007F16E6 /* UIView+Extension.swift in Sources */,
 				D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */,
 				D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */,
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
 				D40DE19A2B220F8C00387ABE /* FilterViewController.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
+				D48DC9E22B31AA690037D287 /* Constants.swift in Sources */,
 				D4B390322B279AE80003EC50 /* FavoritesViewController.swift in Sources */,
 				D40DE18D2B21C9F700387ABE /* UIFont+CustomFont.swift in Sources */,
 				D4D3E4C72B2B294000A5DF9D /* HeaderCollectionReusableView.swift in Sources */,
+				D48DC9E02B31A6380037D287 /* UIButton+Extension.swift in Sources */,
+				D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */,
 				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,
@@ -394,6 +433,7 @@
 				D49BEDC92B1E0C4900A7FD9A /* UIImageView+Extension.swift in Sources */,
 				D4B2DF312B1DD511004D4206 /* UIColor+Extension.swift in Sources */,
 				D48B3F7B2B2334990043D81F /* DrinkCategory.swift in Sources */,
+				D492EB1A2B2F85FB00B670CD /* LoginViewController.swift in Sources */,
 				D4B390342B27B2610003EC50 /* RealmDrink.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

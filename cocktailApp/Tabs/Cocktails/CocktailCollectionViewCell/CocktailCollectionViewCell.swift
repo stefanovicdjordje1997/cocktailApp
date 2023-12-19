@@ -17,7 +17,6 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    static let identifier = "CocktailCollectionViewCell"
     var cellDelegate: CellDelegate?
     
     @IBOutlet weak var drinkImageView: UIImageView!

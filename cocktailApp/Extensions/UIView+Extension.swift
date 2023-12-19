@@ -9,17 +9,33 @@ import UIKit
 
 extension UIView {
     
+    static var identifier: String {
+            return String(describing: self)
+        }
+    
     func setMainGradient() {
-        let gradientLayer = getMainGradient()
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-        layer.insertSublayer(gradientLayer, at: 0)
+        let gradientLayer = getGradient(startColor: .primaryDark, endColor: .primaryLight)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
+    }
+    
+    func setGreenGradient() {
+        let gradientLayer = getGradient(startColor: .greenDark, endColor: .greenLight)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
+    }
+    
+    func setBrownGradient() {
+        let gradientLayer = getGradient(startColor: .brownDark, endColor: .brownLight)
+        gradientLayer.frame = CGRect(x: .zero, y: .zero, width: frame.size.width, height: frame.size.height)
+        layer.insertSublayer(gradientLayer, at: .zero)
     }
 
-    private func getMainGradient() -> CAGradientLayer {
+    private func getGradient(startColor: UIColor, endColor: UIColor) -> CAGradientLayer {
         // Creating a new gradient layer
         let gradientLayer = CAGradientLayer()
         // Set the colors and locations for the gradient layer
-        gradientLayer.colors = [UIColor.primaryDark.cgColor, UIColor.primaryLight.cgColor]
+        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
         gradientLayer.locations = [0.0, 1.0]
         
         // Set the start and end points for the gradient layer

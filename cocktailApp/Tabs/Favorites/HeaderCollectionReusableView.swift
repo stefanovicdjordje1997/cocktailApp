@@ -12,7 +12,6 @@ class HeaderCollectionReusableView: UICollectionReusableView {
     //MARK: - Properties
     
     @IBOutlet weak var headerLabel: UILabel!
-    static let identifier = "FavoritesCollectionViewSectionHeader"
     
     //MARK: - Set up
     
