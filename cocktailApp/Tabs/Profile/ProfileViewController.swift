@@ -23,6 +23,8 @@ class ProfileViewController: UIViewController {
     let passwordEditButton: UIButton = UIButton()
     var isEmailEnabled: Bool = false
     var isPasswordEnabled: Bool = false
+    var email: String = ""
+    var password: String = ""
     
     // MARK: - Lifecycle
     
@@ -44,6 +46,12 @@ class ProfileViewController: UIViewController {
         
         //Setting up labels
         setupLabels()
+        
+        //Setup user properties
+        if let user = RealmManager.instance.getLoggedInUser() {
+            email = user.email
+            password = user.password
+        }
         
         //Setting up email textField
         setupEmailTextField()
@@ -73,7 +81,7 @@ class ProfileViewController: UIViewController {
     
     func setupEmailTextField() {
         //Setup emailTextField
-        emailTextField.text = "example@email.com"
+        emailTextField.text = email
         emailTextField.isEnabled = false
     }
     
@@ -84,7 +92,7 @@ class ProfileViewController: UIViewController {
         passwordEditButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         
         //Setup passwordTextField
-        passwordTextField.text = "password123"
+        passwordTextField.text = password
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
         passwordTextField.rightViewMode = UITextField.ViewMode.always
@@ -119,6 +127,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logout(_ sender: Any) {
+        RealmManager.instance.logoutUser()
         navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
     }
 }

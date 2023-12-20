@@ -33,6 +33,8 @@
 		D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */; };
 		D48DC9E02B31A6380037D287 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */; };
 		D48DC9E22B31AA690037D287 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9E12B31AA690037D287 /* Constants.swift */; };
+		D48DC9E52B31E3300037D287 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9E42B31E3300037D287 /* User.swift */; };
+		D48DC9E72B31EE2A0037D287 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9E62B31EE2A0037D287 /* String+Extension.swift */; };
 		D492EB172B2F857900B670CD /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D492EB162B2F857900B670CD /* Authentication.storyboard */; };
 		D492EB1A2B2F85FB00B670CD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D492EB192B2F85FB00B670CD /* LoginViewController.swift */; };
 		D49BEDC72B1E0A5900A7FD9A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D49BEDC62B1E0A5900A7FD9A /* Kingfisher */; };
@@ -83,6 +85,8 @@
 		D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
 		D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		D48DC9E12B31AA690037D287 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D48DC9E42B31E3300037D287 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D48DC9E62B31EE2A0037D287 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D492EB162B2F857900B670CD /* Authentication.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		D492EB192B2F85FB00B670CD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D49BEDC82B1E0C4900A7FD9A /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				D4ABD9CC2B222F07007F16E6 /* UIView+Extension.swift */,
 				D48DC9DD2B31A4450037D287 /* UIStoryboard+Extension.swift */,
 				D48DC9DF2B31A6380037D287 /* UIButton+Extension.swift */,
+				D48DC9E62B31EE2A0037D287 /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,6 +282,7 @@
 				D4B2DF342B1DE3DD004D4206 /* Drink.swift */,
 				D48B3F7A2B2334990043D81F /* DrinkCategory.swift */,
 				D4B390332B27B2610003EC50 /* RealmDrink.swift */,
+				D48DC9E42B31E3300037D287 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 				D4ABD9CD2B222F07007F16E6 /* UIView+Extension.swift in Sources */,
 				D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */,
 				D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */,
+				D48DC9E52B31E3300037D287 /* User.swift in Sources */,
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
 				D40DE19A2B220F8C00387ABE /* FilterViewController.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
@@ -420,6 +427,7 @@
 				D48DC9DE2B31A4450037D287 /* UIStoryboard+Extension.swift in Sources */,
 				D429591A2B14AE4B0015092E /* SplashViewController.swift in Sources */,
 				D42B27C82B18E4C500E65B39 /* CocktailsViewController.swift in Sources */,
+				D48DC9E72B31EE2A0037D287 /* String+Extension.swift in Sources */,
 				D49BEDD02B1E244800A7FD9A /* NetworkErrors.swift in Sources */,
 				D40DE19D2B2211A200387ABE /* FilterTableViewCell.swift in Sources */,
 				D4563E362B162D06004855B6 /* TabBarController.swift in Sources */,

@@ -58,12 +58,12 @@ class LoginViewController: UIViewController {
         var errors: [String] = []
         
         //Validate email
-        if let email = emailTextField.text, email.isEmpty {
+        if let email = emailTextField.text, email.isEmpty || !email.isValidEmail() {
             errors.append(AlertMessage.email)
         }
         
         //Validate password
-        if let password = passwordTextField.text, password.isEmpty {
+        if let password = passwordTextField.text, password.isEmpty || !password.isValidPassword() {
             errors.append(AlertMessage.password)
         }
         
@@ -71,11 +71,11 @@ class LoginViewController: UIViewController {
         switch errors.count {
             
         case 1:
-            showAlert(title: AlertTitle.warning, message: "\(errors[0]) is required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0]) is not valid. ❌")
             return false
             
         case 2:
-            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: " and ")) are required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: " and ")) are not valid. ❌")
             return false
             
         default:
@@ -91,10 +91,13 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func login(_ sender: Any) {
-        guard isValid() else {
+        //If form is not valid return
+        guard isValid() else { return }
+        
+        if !RealmManager.instance.isLoginSuccessful(email: emailTextField.text ?? "", password: passwordTextField.text ?? "") {
+            showAlert(title: AlertTitle.warning, message: AlertMessage.loginFailed)
             return
         }
-        
         navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
     }
     
@@ -119,5 +122,22 @@ extension LoginViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            emailTextField.placeholder = ""
+        } else {
+            passwordTextField.placeholder = ""
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField.placeholder = TextFieldPlaceholder.email
+        } else {
+            passwordTextField.placeholder = TextFieldPlaceholder.password
+        }
     }
 }

@@ -20,7 +20,7 @@ class RealmManager {
         realm = try! Realm()
     }
     
-    // MARK: - Public Methods
+    // MARK: - Public Drink methods
 
     func addDrink(realmDrink: RealmDrink) {
         try! realm.write {
@@ -46,7 +46,7 @@ class RealmManager {
         }
     }
     
-    func contains(drink: Drink) -> Bool {
+    func containsDrink(drink: Drink) -> Bool {
         return getDrinks().contains(where: { $0.id == drink.id })
     }
     
@@ -64,5 +64,43 @@ class RealmManager {
         try! realm.write {
             getDrink(drink: drink)?.category = drink.category?.rawValue ?? ""
         }
+    }
+    
+    // MARK: - Public User methods
+    
+    func addUser(user: User) {
+        try! realm.write {
+            realm.add(user)
+        }
+    }
+    
+    func getUsers() -> Results<User> {
+        return realm.objects(User.self)
+    }
+    
+    func containsUser(user: User) -> Bool {
+        return getUsers().contains(where: { $0.email == user.email })
+    }
+    
+    func isLoginSuccessful(email: String, password: String) -> Bool {
+        guard let user = getUsers().filter("email == %@ AND password == %@", email, password).first else { return false}
+        try! realm.write {
+            user.isLoggedIn = true
+        }
+        return true
+    }
+    
+    func isLoggedIn() -> Bool {
+        return getUsers().contains(where: { $0.isLoggedIn == true })
+    }
+    
+    func logoutUser() {
+        try! realm.write {
+            getUsers().filter("isLoggedIn == true").first?.isLoggedIn = false
+        }
+    }
+    
+    func getLoggedInUser() -> User? {
+        return getUsers().filter("isLoggedIn == true")[0]
     }
 }

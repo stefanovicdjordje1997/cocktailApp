@@ -63,31 +63,35 @@ class RegisterViewController: UIViewController {
         var errors: [String] = []
         
         //Validate name
-        if let name = nameTextField.text, name.isEmpty {
+        if let name = nameTextField.text, name.isEmpty || !name.isValidName() {
             errors.append(AlertMessage.name)
         }
 
         //Validate email
-        if let email = emailTextField.text, email.isEmpty {
+        if let email = emailTextField.text, email.isEmpty || !email.isValidEmail() {
             errors.append(AlertMessage.email)
         }
 
         //Validate password
-        if let password = passwordTextField.text, password.isEmpty {
+        if let password = passwordTextField.text, password.isEmpty || !password.isValidPassword() {
             errors.append(AlertMessage.password)
         }
 
         //Handle multiple errors
         switch errors.count {
+            
         case 1:
-            showAlert(title: AlertTitle.warning, message: "\(errors[0]) is required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0]) is not valid. ❌")
             return false
+            
         case 2:
-            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: " and ")) are required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: " and ")) are not valid. ❌")
             return false
+            
         case 3:
-            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: ", ")) and \(errors[2]) are required.")
+            showAlert(title: AlertTitle.warning, message: "\(errors[0...1].joined(separator: ", ")) and \(errors[2]) are not valid. ❌")
             return false
+            
         default:
             return true
         }
@@ -101,10 +105,18 @@ class RegisterViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func register(_ sender: Any) {
-        guard isValid() else {
+        //If form is not valid return
+        guard isValid() else { return }
+        
+        let user = User(name: nameTextField.text ?? "", email: emailTextField.text ?? "", password: passwordTextField.text ?? "", isLoggedIn: true)
+        
+        //If user already exists show alert with message
+        if RealmManager.instance.containsUser(user: user) {
+            showAlert(title: AlertTitle.warning, message: AlertMessage.userExists)
             return
         }
-        
+        //User does not exist, add it to database and go to cocktails screen
+        RealmManager.instance.addUser(user: user)
         navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
     }
     
@@ -140,6 +152,27 @@ extension RegisterViewController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            emailTextField.placeholder = ""
+        } else if textField == passwordTextField {
+            passwordTextField.placeholder = ""
+        } else {
+            nameTextField.placeholder = ""
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == emailTextField {
+            emailTextField.placeholder = TextFieldPlaceholder.email
+        } else if textField == passwordTextField {
+            passwordTextField.placeholder = TextFieldPlaceholder.password
+        } else {
+            nameTextField.placeholder = TextFieldPlaceholder.name
+        }
     }
 }
 

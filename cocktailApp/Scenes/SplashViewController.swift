@@ -15,8 +15,11 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         
         loadData()
-        
-        navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
+        if RealmManager.instance.isLoggedIn() {
+            navigateToViewController(fromStoryboard: UIStoryboard.main, withIdentifier: TabBarController.identifier)
+        } else {
+            navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
+        }
     }
     
     // MARK: - Functions

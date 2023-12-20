@@ -42,10 +42,12 @@ struct AlertTitle {
 // MARK: - Alert message text
 
 struct AlertMessage {
-    static let name = "✍🏼Name"
-    static let email = "📧Email"
-    static let password = "🔐Password"
+    static let name = "Name"
+    static let email = "Email"
+    static let password = "Password"
     static let unknown = "Something went wrong 😕"
+    static let userExists = "User already exists 😕"
+    static let loginFailed = "Username and/or password are incorrect 😕"
 }
 
 // MARK: - TabBar item title text
