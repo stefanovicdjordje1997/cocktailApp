@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCollectionView()
     }
     
@@ -53,6 +53,7 @@ class FavoritesViewController: UIViewController {
     
     func populateDrinkCategories() {
         let favoriteDrinks = RealmManager.instance.getFavoriteDrinks()
+        print(favoriteDrinks)
         drinkCategories = []
 
         for favoriteDrink in favoriteDrinks {
@@ -60,7 +61,7 @@ class FavoritesViewController: UIViewController {
             let drink = Drink(favoriteDrink: favoriteDrink)
 
             //Determine the category based on strAlcoholic
-            guard let category = Category(rawValue: favoriteDrink.category ?? "") else { continue }
+            guard let category = Category(rawValue: favoriteDrink.category) else { continue }
 
             //Check if the category already exists in drinkCategories
             if let index = drinkCategories.firstIndex(where: { $0.category == category }) {

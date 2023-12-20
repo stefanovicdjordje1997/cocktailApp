@@ -42,6 +42,6 @@ struct Drink: Decodable {
         self.image = favoriteDrink.image
         self.id = favoriteDrink.id
         self.isFavorite = true
-        self.category = Category(rawValue: favoriteDrink.category ?? "")
+        self.category = Category(rawValue: favoriteDrink.category)
     }
 }

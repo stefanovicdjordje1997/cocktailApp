@@ -33,7 +33,7 @@ class ApiManager {
                 //Decode response
                 if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
                     var drinks = decodedResponse.drinks
-                    //Set values for isFavorite and category properties and save drinks to Realm
+                    //Set value category propertie and save drinks to Realm
                     saveToRealm(drinks: &drinks, alcoholic: alcoholic)
                     completionHandler(.success(drinks))
                 } else {
@@ -126,7 +126,7 @@ class ApiManager {
                 //Decode response
                 if let decodedResponse = try? JSONDecoder().decode(DrinkWrapper.self, from: data) {
                     var drink = decodedResponse.drinks
-                    saveToRealm(drinks: &drink)
+                    saveToRealm(drinks: &drink, alcoholic: .other)
                     completionHandler(.success(drink))
                 } else {
                     completionHandler(.failure(DrinkErrors.decodingError))
@@ -171,19 +171,14 @@ class ApiManager {
     
     private static func saveToRealm(drinks: inout [Drink], alcoholic: Category? = nil) {
         let realm = try! Realm()
+        print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         for i in 0..<drinks.count {
             //Set the category property
-            if drinks[i].category == nil && alcoholic != nil {
+            if drinks[i].category == nil {
                 drinks[i].category = alcoholic
             }
-            //Set the favorite property
-            if realm.objects(RealmDrink.self).filter("id == %@", drinks[i].id as Any).first?.isFavorite == true {
-                drinks[i].isFavorite = true
-            } else {
-                drinks[i].isFavorite = false
-            }
             //Check if the drink exists in Realm, and if not add it
-            if realm.objects(RealmDrink.self).filter("id == %@", drinks[i].id as Any).first == nil {
+            if !realm.objects(RealmDrink.self).contains(where: {$0.id == drinks[i].id}) {
                 try! realm.write {
                     realm.add(RealmDrink(drink: drinks[i]))
                 }

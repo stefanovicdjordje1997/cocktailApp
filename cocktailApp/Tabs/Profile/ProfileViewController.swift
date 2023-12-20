@@ -13,18 +13,21 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logoutButton: UIButton!
     
-    let emailEditButton: UIButton = UIButton()
+    let nameEditButton: UIButton = UIButton()
     let passwordEditButton: UIButton = UIButton()
-    var isEmailEnabled: Bool = false
+    var isNameEnabled: Bool = false
     var isPasswordEnabled: Bool = false
     var email: String = ""
     var password: String = ""
+    var name: String = ""
     
     // MARK: - Lifecycle
     
@@ -51,6 +54,7 @@ class ProfileViewController: UIViewController {
         if let user = RealmManager.instance.getLoggedInUser() {
             email = user.email
             password = user.password
+            name = user.name
         }
         
         //Setting up email textField
@@ -58,6 +62,9 @@ class ProfileViewController: UIViewController {
         
         //Setting up password textField
         setupPasswordTextField()
+        
+        //Setting up password textField
+        setupNameTextField()
 
         //Setting up logout button
         logoutButton.setupButton(title: ButtonTitle.logout, backgroundColor: UIColor.brownLight.withAlphaComponent(0.5), tintColor: .white)
@@ -100,9 +107,52 @@ class ProfileViewController: UIViewController {
         passwordTextField.rightView = passwordEditButton
     }
     
+    func setupNameTextField() {
+        //Setup passwordEditButton
+        nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+        nameEditButton.addTarget(self, action: #selector(enableNameEdit), for: .touchUpInside)
+        nameEditButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        
+        //Setup passwordTextField
+        nameTextField.text = name
+        nameTextField.delegate = self
+        nameTextField.rightViewMode = UITextField.ViewMode.always
+        nameTextField.rightViewMode = .always
+        nameTextField.rightView = nameEditButton
+    }
+    
     func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    func isUserAllowed(completion: @escaping (Bool) -> Void) {
+        //Create alert to check if the user is allowed to change the password
+        let alert = UIAlertController(title: AlertTitle.confirm, message: AlertMessage.confirmPassword, preferredStyle: .alert)
+        
+        //Add a text field to the alert for the password
+        alert.addTextField { textField in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
+        
+        //Add a Confirm button
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default) { [weak self] _ in
+            //Access the entered password
+            if let password = alert.textFields?.first?.text {
+                //Call a function to handle password confirmation
+                let isAllowed = RealmManager.instance.isLoginSuccessful(email: self?.email ?? "", password: password)
+                completion(isAllowed)
+            }
+        })
+        
+        //Add a Cancel button
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            return
+        })
+        
+        //Present the alert
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Actions
@@ -113,16 +163,49 @@ class ProfileViewController: UIViewController {
     
     @objc func enablePasswordEdit() {
         if !isPasswordEnabled {
-            passwordTextField.allowsEditingTextAttributes = true
-            passwordEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            isPasswordEnabled = true
-            passwordTextField.isSecureTextEntry = false
-            passwordTextField.becomeFirstResponder()
+            //Password is not enabled, check if the user is allowed to enable it and make changes
+            isUserAllowed { [weak self] isAllowed in
+                if isAllowed {
+                    //User is allowed, let him make changes
+                    self?.passwordTextField.allowsEditingTextAttributes = true
+                    self?.passwordEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+                    self?.isPasswordEnabled = true
+                    self?.passwordTextField.isSecureTextEntry = false
+                    self?.passwordTextField.becomeFirstResponder()
+                } else {
+                    //User is not allowed, show alert and return
+                    self?.showAlert(title: AlertTitle.warning, message: AlertMessage.notAllowed)
+                    return
+                }
+            }
         } else {
-            passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-            passwordTextField.resignFirstResponder()
-            isPasswordEnabled = false
-            passwordTextField.isSecureTextEntry = true
+            let oldPassword = passwordTextField.text
+            //Password is enabled, update the changed password in User Realm
+            if passwordTextField.text?.isValidPassword() == true {
+                passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+                passwordTextField.resignFirstResponder()
+                isPasswordEnabled = false
+                passwordTextField.isSecureTextEntry = true
+                RealmManager.instance.changeUserPassword(password: passwordTextField.text ?? "")
+            } else {
+                showAlert(title: AlertTitle.warning, message: AlertMessage.password + "is not valid ❌")
+            }
+        }
+    }
+    
+    @objc func enableNameEdit() {
+        if !isNameEnabled {
+            //Name is not enabled, enable edit
+            nameTextField.allowsEditingTextAttributes = true
+            nameEditButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            isNameEnabled = true
+            nameTextField.becomeFirstResponder()
+        } else {
+            //Name is enabled, update the changed name in User Realm
+            nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+            nameTextField.resignFirstResponder()
+            isNameEnabled = false
+            RealmManager.instance.changeUserName(name: nameTextField.text ?? "")
         }
     }
     
@@ -141,7 +224,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if textField == emailTextField && !isEmailEnabled {
+        if textField == nameTextField && !isNameEnabled {
             return false
         }
         if textField == passwordTextField && !isPasswordEnabled {

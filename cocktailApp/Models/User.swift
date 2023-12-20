@@ -12,7 +12,7 @@ class User: Object {
     @Persisted var email: String
     @Persisted var password: String
     @Persisted var isLoggedIn: Bool
-    let drinks = List<RealmDrink>()
+    @Persisted var favoriteDrinks = List<String>()
     
     convenience init(name: String, email: String, password: String, isLoggedIn: Bool) {
         self.init()

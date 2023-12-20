@@ -24,6 +24,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addToFavoritesButton: UIButton!
 
     private var drinkInstance: Drink?
+    private var user: User?
     
     // MARK: - Lifecycle
     
@@ -36,16 +37,14 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     func setupCell(with drink: Drink) {
         drinkInstance = drink
         
-        guard var tempDrink = drinkInstance else { return }
-        
         //Set the isFavorite property
-        tempDrink.isFavorite = RealmManager.instance.getDrink(drink: tempDrink)?.isFavorite
+        drinkInstance?.isFavorite = RealmManager.instance.isFavoriteDrink(drink: drink)
         
         //Set up cell values
         drinkNameLabel.text = drink.name
         drinkImageView.setImage(with: drink)
         //Set the corresponding button icon
-        addToFavoritesButton.setImage(UIImage(named: tempDrink.isFavorite == true ? "favoritesOn" : "favoritesOff"), for: .normal)
+        addToFavoritesButton.setImage(UIImage(named: drinkInstance?.isFavorite == true ? "favoritesOn" : "favoritesOff"), for: .normal)
         
         //Setting layer
         layer.cornerRadius = 4
@@ -56,31 +55,22 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         layer.masksToBounds = false
     }
     
-    private func updateDrinkRealm(_ drink: Drink?) {
-        guard var drink = drink else { return }
-        
-        if drink.isFavorite != true {
-            //Drink is no more a favorite one, set isFavorite to false
-            RealmManager.instance.setFavorite(with: drink, isFavorite: false)
-        } else {
-            //Drink is now favorite, check if it has categoty, if not set it to other
-            if RealmManager.instance.getDrink(drink: drink)?.category == "" {
-                drink.category = .other
-                RealmManager.instance.setCategory(with: drink)
-            }
-            //Set isFavorite to true
-            RealmManager.instance.setFavorite(with: drink, isFavorite: true)
-        }
-    }
-    
     // MARK: - Actions
     
     @IBAction func addToFavorites(_ sender: Any) {
+        //Make sure drinkInstance is not nil
+        guard let drink = drinkInstance else { return }
+        
         //Change the state of isFavorite property
         drinkInstance?.isFavorite?.toggle()
         
-        //Set isFavorite and category of the drink in realm
-        updateDrinkRealm(drinkInstance)
+        if drinkInstance?.isFavorite == false {
+            //Drink is not favorite, remove it
+            RealmManager.instance.removeFavoriteDrink(realmDrink: RealmDrink(drink: drink))
+        } else {
+            //Drink is favorite, add it
+            RealmManager.instance.addFavoriteDrink(realmDrink: RealmDrink(drink: drink))
+        }
         
         //Set up the button image
         let buttonImageName = drinkInstance?.isFavorite == true ? "favoritesOn" : "favoritesOff"

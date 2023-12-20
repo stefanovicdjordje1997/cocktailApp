@@ -20,53 +20,49 @@ class RealmManager {
         realm = try! Realm()
     }
     
-    // MARK: - Public Drink methods
-
-    func addDrink(realmDrink: RealmDrink) {
+    // MARK: - Drink methods
+    
+    func addFavoriteDrink(realmDrink: RealmDrink) {
         try! realm.write {
-            realm.add(realmDrink)
+            getLoggedInUser()?.favoriteDrinks.append(realmDrink.id)
+        }
+    }
+    
+    func removeFavoriteDrink(realmDrink: RealmDrink) {
+        try! realm.write {
+            if let user = getLoggedInUser(),
+               let index = user.favoriteDrinks.firstIndex(where: { $0 == realmDrink.id }) {
+                user.favoriteDrinks.remove(at: index)
+            }
         }
     }
 
-    func getDrinks() -> Results<RealmDrink> {
+    private func getDrinks() -> Results<RealmDrink> {
         return realm.objects(RealmDrink.self)
     }
     
     func getFavoriteDrinks() -> Results<RealmDrink> {
-        return getDrinks().filter("isFavorite == true")
+        return getDrinks().filter("id IN %@", getLoggedInUser()?.favoriteDrinks as Any)
     }
     
     func getAlcoholicDrinks() -> Results<RealmDrink> {
         return getDrinks().filter("category == 'Alcoholic'")
     }
-
-    func deleteDrink(favoriteDrink: RealmDrink) {
-        try! realm.write {
-            realm.delete(favoriteDrink)
+    
+    func isFavoriteDrink(drink: Drink) -> Bool {
+        guard let user = getLoggedInUser() else {
+            return false
         }
-    }
-    
-    func containsDrink(drink: Drink) -> Bool {
-        return getDrinks().contains(where: { $0.id == drink.id })
-    }
-    
-    func getDrink(drink: Drink) -> RealmDrink? {
-        return getDrinks().filter("id == %@", drink.id as Any).first
-    }
-    
-    func setFavorite(with drink: Drink, isFavorite: Bool) {
-        try! realm.write {
-            getDrink(drink: drink)?.isFavorite = isFavorite
+        
+        let favoriteDrinks = user.favoriteDrinks
+        let isFavorite = favoriteDrinks.contains { id in
+            return id == drink.id
         }
+        
+        return isFavorite
     }
     
-    func setCategory(with drink: Drink) {
-        try! realm.write {
-            getDrink(drink: drink)?.category = drink.category?.rawValue ?? ""
-        }
-    }
-    
-    // MARK: - Public User methods
+    // MARK: - User methods
     
     func addUser(user: User) {
         try! realm.write {
@@ -74,7 +70,7 @@ class RealmManager {
         }
     }
     
-    func getUsers() -> Results<User> {
+    private func getUsers() -> Results<User> {
         return realm.objects(User.self)
     }
     
@@ -103,4 +99,17 @@ class RealmManager {
     func getLoggedInUser() -> User? {
         return getUsers().filter("isLoggedIn == true")[0]
     }
+    
+    func changeUserPassword(password: String) {
+        try! realm.write {
+            getLoggedInUser()?.password = password
+        }
+    }
+    
+    func changeUserName(name: String) {
+        try! realm.write {
+            getLoggedInUser()?.name = name
+        }
+    }
+
 }

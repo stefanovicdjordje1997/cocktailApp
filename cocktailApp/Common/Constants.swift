@@ -37,6 +37,7 @@ struct LabelTitle {
 struct AlertTitle {
     static let warning = "Warning"
     static let unexpected = "Oops"
+    static let confirm = "Confirm"
 }
 
 // MARK: - Alert message text
@@ -48,6 +49,8 @@ struct AlertMessage {
     static let unknown = "Something went wrong 😕"
     static let userExists = "User already exists 😕"
     static let loginFailed = "Username and/or password are incorrect 😕"
+    static let confirmPassword = "Please enter your password to confirm it's you:"
+    static let notAllowed = "You are not allowed to change password ⛔️"
 }
 
 // MARK: - TabBar item title text
