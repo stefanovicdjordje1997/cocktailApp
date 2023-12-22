@@ -9,15 +9,15 @@ import UIKit
 import Kingfisher
 import RealmSwift
 
-protocol CellDelegate {
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink?)
+protocol DrinkDelegate {
+    func didTapFavorite(drinkId: String)
 }
 
 class CocktailCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var cellDelegate: CellDelegate?
+    var drinkDelegate: DrinkDelegate?
     
     @IBOutlet weak var drinkImageView: UIImageView!
     @IBOutlet weak var drinkNameLabel: UILabel!
@@ -38,7 +38,7 @@ class CocktailCollectionViewCell: UICollectionViewCell {
         drinkInstance = drink
         
         //Set the isFavorite property
-        drinkInstance?.isFavorite = RealmManager.instance.isFavoriteDrink(drink: drink)
+        drinkInstance?.isFavorite = RealmManager.instance.isFavoriteDrink(drinkId: drink.id)
         
         //Set up cell values
         drinkNameLabel.text = drink.name
@@ -58,24 +58,19 @@ class CocktailCollectionViewCell: UICollectionViewCell {
     // MARK: - Actions
     
     @IBAction func addToFavorites(_ sender: Any) {
-        //Make sure drinkInstance is not nil
-        guard let drink = drinkInstance else { return }
-        
         //Change the state of isFavorite property
         drinkInstance?.isFavorite?.toggle()
         
-        if drinkInstance?.isFavorite == false {
-            //Drink is not favorite, remove it
-            RealmManager.instance.removeFavoriteDrink(realmDrink: RealmDrink(drink: drink))
-        } else {
-            //Drink is favorite, add it
-            RealmManager.instance.addFavoriteDrink(realmDrink: RealmDrink(drink: drink))
-        }
+        //Make sure drinkInstance is not nil
+        guard let drink = drinkInstance else { return }
+        
+        //Update drink in Realm
+        RealmManager.instance.updateFavorites(drinkId: drink.id)
         
         //Set up the button image
         let buttonImageName = drinkInstance?.isFavorite == true ? "favoritesOn" : "favoritesOff"
         addToFavoritesButton.setImage(UIImage(named: buttonImageName), for: .normal)
         
-        cellDelegate?.didTap(cell: self, drink: drinkInstance)
+        drinkDelegate?.didTapFavorite(drinkId: drinkInstance?.id ?? "")
     }
 }

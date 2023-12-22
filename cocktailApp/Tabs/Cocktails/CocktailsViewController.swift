@@ -23,7 +23,6 @@ class CocktailsViewController: UIViewController {
     var searchBarButtonItem = UIBarButtonItem()
     var filterBarButtonItem = UIBarButtonItem()
     var drinks: [Drink] = []
-    var previousFavoriteDrinksCount = 0
     var drinksFromSearch: [Drink] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -38,6 +37,7 @@ class CocktailsViewController: UIViewController {
         }
     }
     let loader = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100),type: .orbit, color: .primaryDark)
+    var shouldRefresh = false
     
     // MARK: - Lifecycle
     
@@ -50,10 +50,14 @@ class CocktailsViewController: UIViewController {
         configureTapGesture()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        cocktailsCollectionView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         backgroundView.setMainGradient()
-        reloadDrinkData()
     }
     
     // MARK: - Set up
@@ -63,7 +67,6 @@ class CocktailsViewController: UIViewController {
         setupNavBarButtons()
         setupLoader()
         setupSearchController()
-        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
     
     func setupLabel() {
@@ -125,11 +128,17 @@ class CocktailsViewController: UIViewController {
         search.searchBar.delegate = self
         search.searchBar.placeholder = "Type in cocktail name"
         search.hidesNavigationBarDuringPresentation = false
+        //Set the search bar's appearance in light mode
+        if #available(iOS 13.0, *) {
+            search.searchBar.overrideUserInterfaceStyle = .light
+        }
         search.searchBar.setShowsCancelButton(false, animated: false)
     }
+
     
     func configureTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
     
@@ -150,10 +159,10 @@ class CocktailsViewController: UIViewController {
     
     func reloadDrinkData() {
         //Reload data only if drink is removed from favorites on the favorites tab
-        if RealmManager.instance.getFavoriteDrinks().count < previousFavoriteDrinksCount {
+        if shouldRefresh {
             cocktailsCollectionView.reloadData()
+            shouldRefresh = false
         }
-        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
     }
     
     // MARK: - Actions
@@ -247,7 +256,7 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
-        cell.cellDelegate = self
+        cell.drinkDelegate = self
         cell.setupCell(with: search.searchBar.text?.isEmpty == false ? drinksFromSearch[indexPath.row] : drinks[indexPath.row])
         return cell
     }
@@ -255,6 +264,16 @@ extension CocktailsViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2 - 12
         return CGSize(width: width, height: 1.5 * width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let drink = drinksFromSearch.isEmpty ? drinks[indexPath.item] : drinksFromSearch [indexPath.item]
+        let drinkDetailsViewController = UIStoryboard.drinkDetails.instantiateViewController(withIdentifier: DrinkDetailsViewController.identifier) as! DrinkDetailsViewController
+        drinkDetailsViewController.title = drink.name
+        drinkDetailsViewController.selectedDrinkId = drink.id
+        drinkDetailsViewController.delegate = self
+        drinkDetailsViewController.drinkDetailsDelegate = self
+        self.navigationController?.pushViewController(drinkDetailsViewController, animated: true)
     }
 }
 
@@ -289,9 +308,24 @@ extension CocktailsViewController: FilterDelegate {
     }
 }
 
-extension CocktailsViewController: CellDelegate {
+// MARK: - DrinkDelegate
+
+extension CocktailsViewController: DrinkDelegate {
     
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink?) {
-        previousFavoriteDrinksCount = RealmManager.instance.getFavoriteDrinks().count
+    func didTapFavorite(drinkId: String) {
+        shouldRefresh = true
+    }
+}
+
+extension CocktailsViewController: DrinkDetailsDelegate {
+ 
+    func didFetchFilteredDrinks(filteredDrinks: [Drink], filterText: String) {
+        self.cocktailsCollectionView.showAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.drinks = filteredDrinks
+            self.resultsLabel.text = filterText
+            self.cocktailsCollectionView.scrollToItem(at: IndexPath(item: .zero, section: .zero), at: .top, animated: true)
+            self.cocktailsCollectionView.reloadData()
+        }
     }
 }

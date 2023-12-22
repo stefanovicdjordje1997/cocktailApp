@@ -39,17 +39,29 @@ class LoginViewController: UIViewController {
     }
     
     func setupLabel() {
-        headerLabel.text = LabelTitle.login
+        headerLabel.text = LabelText.login
         headerLabel.font = .customFontRegularExtraLarge
     }
     
     func setupEmailTextField() {
-        emailTextField.placeholder = TextFieldPlaceholder.email
+        let attributedPlaceholder = NSAttributedString(
+            string: TextFieldPlaceholder.email,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+
+        //Set the attributed string as the placeholder
+        emailTextField.attributedPlaceholder = attributedPlaceholder
         emailTextField.delegate = self
     }
     
     func setupPasswordTextField() {
-        passwordTextField.placeholder = TextFieldPlaceholder.password
+        let attributedPlaceholder = NSAttributedString(
+            string: TextFieldPlaceholder.password,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+
+        //Set the attributed string as the placeholder
+        passwordTextField.attributedPlaceholder = attributedPlaceholder
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
     }

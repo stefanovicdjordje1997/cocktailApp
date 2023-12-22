@@ -167,11 +167,42 @@ class ApiManager {
         task.resume()
     }
     
+    // MARK: - Fetch drink details
+    
+    static func fetchDrinkDetails(drinkId: String, completionHandler: @escaping (Result<DrinkDetails, Error>) -> Void) {
+        let endpoint = "lookup.php?i=\(drinkId)"
+        //Create URL
+        guard let url = URL(string: baseUrl + endpoint) else {
+            completionHandler(.failure(NetworkErrors.invalidUrlError))
+            return
+        }
+        //Create URL session
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if error != nil {
+                completionHandler(.failure(DrinkErrors.apiError))
+                return
+            }
+            if let data {
+                //Decode response
+                if let decodedResponse = try? JSONDecoder().decode(DrinkDetailsWrapper.self, from: data) {
+                    var drink = decodedResponse.drinks[0]
+//                    drink.isFavorite = RealmManager.instance.isFavoriteDrink(drinkId: drink.id)
+                    completionHandler(.success(drink))
+                } else {
+                    completionHandler(.failure(DrinkErrors.decodingError))
+                }
+            } else {
+                completionHandler(.failure(NetworkErrors.noDataError))
+            }
+        }
+        task.resume()
+        
+    }
+    
     // MARK: - Save to realm function
     
     private static func saveToRealm(drinks: inout [Drink], alcoholic: Category? = nil) {
         let realm = try! Realm()
-        print("User Realm User file location: \(realm.configuration.fileURL!.path)")
         for i in 0..<drinks.count {
             //Set the category property
             if drinks[i].category == nil {

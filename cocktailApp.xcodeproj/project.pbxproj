@@ -54,6 +54,9 @@
 		D4B390362B2897F10003EC50 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B390352B2897F10003EC50 /* RealmManager.swift */; };
 		D4D3E4C72B2B294000A5DF9D /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D3E4C62B2B294000A5DF9D /* HeaderCollectionReusableView.swift */; };
 		D4FC4E772B1FD0F600502EBA /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */; };
+		D4FE2ABC2B3391C40046E3BC /* DrinkDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE2ABB2B3391C40046E3BC /* DrinkDetails.swift */; };
+		D4FE2ABE2B3399D40046E3BC /* DrinkDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4FE2ABD2B3399D40046E3BC /* DrinkDetails.storyboard */; };
+		D4FE2AC12B339A0B0046E3BC /* DrinkDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FE2AC02B339A0B0046E3BC /* DrinkDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +104,9 @@
 		D4B390352B2897F10003EC50 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		D4D3E4C62B2B294000A5DF9D /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		D4FC4E762B1FD0F600502EBA /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		D4FE2ABB2B3391C40046E3BC /* DrinkDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetails.swift; sourceTree = "<group>"; };
+		D4FE2ABD2B3399D40046E3BC /* DrinkDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DrinkDetails.storyboard; sourceTree = "<group>"; };
+		D4FE2AC02B339A0B0046E3BC /* DrinkDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,7 @@
 		D42B27CD2B18F79200E65B39 /* Cocktails */ = {
 			isa = PBXGroup;
 			children = (
+				D4FE2ABF2B3399F10046E3BC /* DrinkDetails */,
 				D40DE1962B220DBD00387ABE /* Filter */,
 				D40DE1942B220D5200387ABE /* CocktailCollectionViewCell */,
 				D40DE1952B220D8100387ABE /* CocktailsEmptyView */,
@@ -220,6 +227,7 @@
 				D429591B2B14AE4B0015092E /* Main.storyboard */,
 				D40DE1922B22086D00387ABE /* Filter.storyboard */,
 				D492EB162B2F857900B670CD /* Authentication.storyboard */,
+				D4FE2ABD2B3399D40046E3BC /* DrinkDetails.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -283,6 +291,7 @@
 				D48B3F7A2B2334990043D81F /* DrinkCategory.swift */,
 				D4B390332B27B2610003EC50 /* RealmDrink.swift */,
 				D48DC9E42B31E3300037D287 /* User.swift */,
+				D4FE2ABB2B3391C40046E3BC /* DrinkDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -319,6 +328,14 @@
 				D4B390352B2897F10003EC50 /* RealmManager.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		D4FE2ABF2B3399F10046E3BC /* DrinkDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D4FE2AC02B339A0B0046E3BC /* DrinkDetailsViewController.swift */,
+			);
+			path = DrinkDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,6 +411,7 @@
 				D429591F2B14AE4D0015092E /* Assets.xcassets in Resources */,
 				D40DE19E2B2211A200387ABE /* FilterTableViewCell.xib in Resources */,
 				D40DE18F2B21CA2800387ABE /* Caveat-Bold.ttf in Resources */,
+				D4FE2ABE2B3399D40046E3BC /* DrinkDetails.storyboard in Resources */,
 				D40DE18B2B21C73600387ABE /* Caveat-Regular.ttf in Resources */,
 				D492EB172B2F857900B670CD /* Authentication.storyboard in Resources */,
 				D4530D012B208737004135B0 /* CocktailsEmptyView.xib in Resources */,
@@ -413,10 +431,12 @@
 			files = (
 				D42B9C762B309403000AF292 /* RegisterViewController.swift in Sources */,
 				D4ABD9CD2B222F07007F16E6 /* UIView+Extension.swift in Sources */,
+				D4FE2AC12B339A0B0046E3BC /* DrinkDetailsViewController.swift in Sources */,
 				D42B27CB2B18F3E800E65B39 /* CocktailCollectionViewCell.swift in Sources */,
 				D48B83472B1E66F600C60BE7 /* UIViewController+Extension.swift in Sources */,
 				D48DC9E52B31E3300037D287 /* User.swift in Sources */,
 				D4B2DF352B1DE3DD004D4206 /* Drink.swift in Sources */,
+				D4FE2ABC2B3391C40046E3BC /* DrinkDetails.swift in Sources */,
 				D40DE19A2B220F8C00387ABE /* FilterViewController.swift in Sources */,
 				D4B2DF392B1DE4E4004D4206 /* ApiManager.swift in Sources */,
 				D48DC9E22B31AA690037D287 /* Constants.swift in Sources */,

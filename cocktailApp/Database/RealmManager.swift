@@ -36,6 +36,18 @@ class RealmManager {
             }
         }
     }
+    
+    func updateFavorites(drinkId: String) {
+        guard let drink = getDrinks().first(where: { $0.id == drinkId }) else { return }
+        
+        if isFavoriteDrink(drinkId: drinkId) {
+            //Drink is not favorite, remove it
+            removeFavoriteDrink(realmDrink: drink)
+        } else {
+            //Drink is favorite, add it
+            addFavoriteDrink(realmDrink: drink)
+        }
+    }
 
     private func getDrinks() -> Results<RealmDrink> {
         return realm.objects(RealmDrink.self)
@@ -49,14 +61,14 @@ class RealmManager {
         return getDrinks().filter("category == 'Alcoholic'")
     }
     
-    func isFavoriteDrink(drink: Drink) -> Bool {
+    func isFavoriteDrink(drinkId: String) -> Bool {
         guard let user = getLoggedInUser() else {
             return false
         }
         
         let favoriteDrinks = user.favoriteDrinks
         let isFavorite = favoriteDrinks.contains { id in
-            return id == drink.id
+            return id == drinkId
         }
         
         return isFavorite

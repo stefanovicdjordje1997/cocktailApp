@@ -18,4 +18,14 @@ extension UIImageView {
             tintColor = .gray
         }
     }
+    
+    func setImage(with drink: DrinkDetails) {
+        if let url = URL(string: drink.image ?? "") {
+            kf.setImage(with: url)
+        } else {
+            image = UIImage(systemName: "photo")
+            contentMode = .scaleAspectFit
+            tintColor = .gray
+        }
+    }
 }

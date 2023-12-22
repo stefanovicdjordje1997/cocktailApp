@@ -53,7 +53,6 @@ class FavoritesViewController: UIViewController {
     
     func populateDrinkCategories() {
         let favoriteDrinks = RealmManager.instance.getFavoriteDrinks()
-        print(favoriteDrinks)
         drinkCategories = []
 
         for favoriteDrink in favoriteDrinks {
@@ -104,11 +103,21 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CocktailCollectionViewCell.identifier, for: indexPath) as! CocktailCollectionViewCell
         
-        cell.cellDelegate = self
+        cell.drinkDelegate = self
         
         let drink = drinkCategories[indexPath.section].drinks[indexPath.item]
         cell.setupCell(with: drink)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let drink = drinkCategories[indexPath.section].drinks[indexPath.item]
+        
+        let drinkDetailsViewController = UIStoryboard.drinkDetails.instantiateViewController(withIdentifier: DrinkDetailsViewController.identifier) as! DrinkDetailsViewController
+        drinkDetailsViewController.title = drink.name
+        drinkDetailsViewController.selectedDrinkId = drink.id
+        drinkDetailsViewController.delegate = self
+        self.navigationController?.pushViewController(drinkDetailsViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -122,22 +131,19 @@ extension FavoritesViewController: UICollectionViewDelegate, UICollectionViewDat
         let width = collectionView.frame.width / 2 - 12
         return CGSize(width: width, height: 1.5 * width)
     }
-    
-    
 }
 
 // MARK: - CellDelegaate
 
-extension FavoritesViewController: CellDelegate {
-    
-    func didTap(cell: CocktailCollectionViewCell, drink: Drink?) {
-         
-        if let indexPath = favoritesCollectionView.indexPath(for: cell) {
-            let section = indexPath.section
-            let item = indexPath.item
-            
+extension FavoritesViewController: DrinkDelegate {
+ 
+    func didTapFavorite(drinkId: String) {
+        let drink = drinkCategories.flatMap { $0.drinks }.first(where: { $0.id == drinkId })
+        
+        guard let section = drinkCategories.firstIndex(where: { $0.category == drink?.category }) else { return }
+        guard let index = drinkCategories[section].drinks.firstIndex(where: { $0 == drink }) else { return }
             //Update drinkCategories
-            drinkCategories[section].drinks.remove(at: item)
+            drinkCategories[section].drinks.remove(at: index)
             
             //Delete the item or section from the collection view
             favoritesCollectionView.performBatchUpdates({
@@ -147,10 +153,10 @@ extension FavoritesViewController: CellDelegate {
                     favoritesCollectionView.deleteSections(IndexSet([section]))
                 } else {
                     //If there are remaining items in the section, delete only the item
-                    favoritesCollectionView.deleteItems(at: [IndexPath(item: item, section: section)])
+                    favoritesCollectionView.deleteItems(at: [IndexPath(item: index, section: section)])
                 }
             }, completion: nil)
-        }
+      
         
         setupBackgroundView()
     }

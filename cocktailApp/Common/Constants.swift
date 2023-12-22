@@ -23,13 +23,19 @@ struct ButtonTitle {
     static let logout = "Logout"
 }
 
-// MARK: - Label title text
+// MARK: - Label text
 
-struct LabelTitle {
+struct LabelText {
     static let email = "Email"
     static let password = "Password"
+    static let name = "Name"
     static let login = "LoGin"
     static let register = "RegiStar"
+    static let alcoholic = "Alcoholic"
+    static let category = "Category:"
+    static let glassType = "Glass type:"
+    static let ingredients = "Ingredients"
+    static let instructions = "Instructions"
 }
 
 // MARK: - Alert title text

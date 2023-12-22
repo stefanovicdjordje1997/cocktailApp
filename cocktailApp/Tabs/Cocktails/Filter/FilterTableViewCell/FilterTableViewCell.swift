@@ -19,6 +19,7 @@ class FilterTableViewCell: UITableViewCell {
         categoryTitleLabel.text = title
         layoutMargins = UIEdgeInsets.zero
         accessoryType = showDisclosureIndicator ? .disclosureIndicator : .none
+        
         backgroundColor = UIColor.clear
         selectionStyle = .none
     }

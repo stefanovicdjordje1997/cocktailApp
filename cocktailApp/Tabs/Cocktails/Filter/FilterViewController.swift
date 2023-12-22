@@ -64,6 +64,13 @@ extension FilterViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = filterTableView.dequeueReusableCell(withIdentifier: FilterTableViewCell.identifier, for: indexPath) as! FilterTableViewCell
         cell.setupCell(with: filters[indexPath.row], showDisclosureIndicator: true)
         
+        //Set up cell's the accessory view
+        let image = UIImage(systemName: "chevron.right")
+        let checkmark  = UIImageView(frame:CGRect(x:0, y:0, width:(image?.size.width)!, height:(image?.size.height)!));
+        checkmark.image = image
+        cell.accessoryView = checkmark
+        cell.tintColor = .black
+        
         return cell
     }
     

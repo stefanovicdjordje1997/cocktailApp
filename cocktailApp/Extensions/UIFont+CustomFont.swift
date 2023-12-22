@@ -13,6 +13,7 @@ enum AppFonts: String {
 }
 
 enum FontSize: CGFloat {
+    case extraExtraLarge = 27.0
     case extraLarge = 22.0
     case large = 19.0
     case normal = 17.0
@@ -22,11 +23,19 @@ enum FontSize: CGFloat {
 
 extension UIFont {
     
+    static var customFontRegularExtraExtraLarge: UIFont {
+        return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.extraExtraLarge.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    }
+
+    static var customFontBoldExtraExtraLarge: UIFont {
+        return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.extraExtraLarge.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+    }
+    
     static var customFontRegularExtraLarge: UIFont {
         return UIFont(name: AppFonts.caveatRegular.rawValue, size: FontSize.extraLarge.rawValue) ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
     }
 
-    static var customFontBoldLargeExtraLarge: UIFont {
+    static var customFontBoldExtraLarge: UIFont {
         return UIFont(name: AppFonts.caveatBold.rawValue, size: FontSize.extraLarge.rawValue) ?? UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
     }
     

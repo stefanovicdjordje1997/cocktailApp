@@ -29,6 +29,8 @@ class RegisterViewController: UIViewController {
         configureTapGesture()
     }
     
+    // MARK: - Set up
+    
     func prepareForm() {
         setupLabel()
         loginButton.setupButton(title: ButtonTitle.login, backgroundColor: .brownLight.withAlphaComponent(0.5), tintColor: .white)
@@ -39,22 +41,40 @@ class RegisterViewController: UIViewController {
     }
     
     func setupLabel() {
-        headerLabel.text = LabelTitle.register
+        headerLabel.text = LabelText.register
         headerLabel.font = .customFontRegularExtraLarge
     }
     
     func setupNameTextField() {
-        nameTextField.placeholder = TextFieldPlaceholder.name
+        let attributedPlaceholder = NSAttributedString(
+            string: TextFieldPlaceholder.name,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+
+        //Set the attributed string as the placeholder
+        nameTextField.attributedPlaceholder = attributedPlaceholder
         nameTextField.delegate = self
     }
     
     func setupEmailTextField() {
-        emailTextField.placeholder = TextFieldPlaceholder.email
+        let attributedPlaceholder = NSAttributedString(
+            string: TextFieldPlaceholder.email,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+
+        //Set the attributed string as the placeholder
+        emailTextField.attributedPlaceholder = attributedPlaceholder
         emailTextField.delegate = self
     }
     
     func setupPasswordTextField() {
-        passwordTextField.placeholder = TextFieldPlaceholder.password
+        let attributedPlaceholder = NSAttributedString(
+            string: TextFieldPlaceholder.password,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+
+        //Set the attributed string as the placeholder
+        passwordTextField.attributedPlaceholder = attributedPlaceholder
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
     }

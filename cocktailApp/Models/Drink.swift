@@ -22,7 +22,7 @@ struct DrinkWrapper: Decodable {
 
 // MARK: - Drink
 
-struct Drink: Decodable {
+struct Drink: Decodable, Equatable {
     var name: String
     var image: String?
     var id: String
@@ -44,4 +44,8 @@ struct Drink: Decodable {
         self.isFavorite = true
         self.category = Category(rawValue: favoriteDrink.category)
     }
+    
+    static func == (lhs: Drink, rhs: Drink) -> Bool {
+            return lhs.id == rhs.id
+        }
 }

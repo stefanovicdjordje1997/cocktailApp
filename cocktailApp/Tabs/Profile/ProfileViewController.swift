@@ -82,8 +82,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setupLabels() {
-        emailLabel.text = LabelTitle.email
-        passwordLabel.text = LabelTitle.password
+        emailLabel.text = LabelText.email
+        passwordLabel.text = LabelText.password
+        nameLabel.text = LabelText.name
     }
     
     func setupEmailTextField() {
@@ -97,6 +98,7 @@ class ProfileViewController: UIViewController {
         passwordEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         passwordEditButton.addTarget(self, action: #selector(enablePasswordEdit), for: .touchUpInside)
         passwordEditButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        passwordEditButton.tintColor = .primaryDark
         
         //Setup passwordTextField
         passwordTextField.text = password
@@ -112,6 +114,7 @@ class ProfileViewController: UIViewController {
         nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         nameEditButton.addTarget(self, action: #selector(enableNameEdit), for: .touchUpInside)
         nameEditButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        nameEditButton.tintColor = .primaryDark
         
         //Setup passwordTextField
         nameTextField.text = name
@@ -201,18 +204,31 @@ class ProfileViewController: UIViewController {
             isNameEnabled = true
             nameTextField.becomeFirstResponder()
         } else {
-            //Name is enabled, update the changed name in User Realm
-            nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-            nameTextField.resignFirstResponder()
-            isNameEnabled = false
-            RealmManager.instance.changeUserName(name: nameTextField.text ?? "")
+            if nameTextField.text?.isValidName() == true {
+                //Name is enabled, update the changed name in User Realm
+                nameEditButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+                nameTextField.resignFirstResponder()
+                isNameEnabled = false
+                RealmManager.instance.changeUserName(name: nameTextField.text ?? "")
+            } else {
+                showAlert(title: AlertTitle.warning, message: AlertMessage.name + "is not valid ❌")
+            }
         }
     }
     
     @IBAction func logout(_ sender: Any) {
-        RealmManager.instance.logoutUser()
-        navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+        //Add a Cancel action
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        //Add a Logout action
+        alert.addAction(UIAlertAction(title: "Logout", style: .destructive) { _ in
+            RealmManager.instance.logoutUser()
+            self.navigateToViewController(fromStoryboard: UIStoryboard.authentication, withIdentifier: LoginViewController.identifier)
+        })
+        //Present the alert
+        present(alert, animated: true, completion: nil)
     }
+
 }
 
 // MARK: - TextFieldDelegate
